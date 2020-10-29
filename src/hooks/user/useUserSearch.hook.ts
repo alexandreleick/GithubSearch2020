@@ -1,7 +1,9 @@
 import useAxios from 'axios-hooks'
+import { GithubResponse } from '../../typings/github-response.type'
+import { UserSearchResult } from '../../typings/user/user-search-result.type'
 
 const useUserSearch: Function = () => {
-  const [{ data, loading, error }, execute] = useAxios({}, { manual: true })
+  const [{ data, loading, error }, execute] = useAxios<GithubResponse<UserSearchResult[]>>({}, { manual: true })
 
   // Execute the request with the url and given parameter
   const dispatchRequest = (username: string) => execute({ url: `/search/users?q=${username}` })
