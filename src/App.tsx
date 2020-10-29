@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -15,8 +15,19 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import useUserSearch from "./hooks/user/useUserSearch.hook";
 
 const App: React.FC = () => {
+  const {data, loading, error, dispatchRequest} = useUserSearch()
+
+  // Execute request
+  useEffect(() => dispatchRequest('cyrilcolinet'), [])
+
+  // When data field edited, apply this callback
+  useEffect(() => {
+    console.log(data);
+  }, [data])
+
   return (
     <>
       <StatusBar barStyle="dark-content" />
