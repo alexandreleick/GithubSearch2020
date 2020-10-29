@@ -11,6 +11,10 @@
     "prettier:write": "npx prettier --write **/*.{js,jsx,ts,tsx,json} && npx prettier --write *.{js,jsx,ts,tsx,json}"
   },
   "dependencies": {
+    "@types/lru-cache": "^5.1.0",
+    "axios": "^0.21.0",
+    "axios-hooks": "^2.1.0",
+    "lru-cache": "^6.0.0",
     "react": "16.13.1",
     "react-native": "0.63.3"
   },
@@ -18,8 +22,10 @@
     "@babel/core": "^7.12.3",
     "@babel/runtime": "^7.12.1",
     "@react-native-community/eslint-config": "^2.0.0",
+    "@types/axios": "^0.14.0",
     "@types/react-native": "^0.63.30",
     "@typescript-eslint/eslint-plugin": "^4.6.0",
+    "@typescript-eslint/parser": "^4.6.0",
     "babel-jest": "^26.6.1",
     "eslint": "^7.12.1",
     "eslint-config-airbnb-typescript": "^12.0.0",
@@ -30,7 +36,8 @@
     "jest": "^26.6.1",
     "metro-react-native-babel-preset": "^0.63.0",
     "prettier": "^2.1.2",
-    "react-test-renderer": "16.13.1"
+    "react-test-renderer": "16.13.1",
+    "typescript": "~3.9.5"
   },
   "jest": {
     "preset": "react-native"
