@@ -8,6 +8,7 @@ target 'GithubSearch2020' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+
   target 'GithubSearch2020Tests' do
     inherit! :complete
     # Pods for testing
