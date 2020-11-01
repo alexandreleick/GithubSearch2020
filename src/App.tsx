@@ -1,12 +1,5 @@
-import React, {useEffect} from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+import React, { useEffect } from 'react'
+import { SafeAreaView, StyleSheet, ScrollView, View, Text, StatusBar } from 'react-native'
 
 import {
   Header,
@@ -14,34 +7,30 @@ import {
   Colors,
   DebugInstructions,
   ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-import useUserSearch from "./hooks/user/useUserSearch.hook";
+} from 'react-native/Libraries/NewAppScreen'
+import useUserSearch from './hooks/user/useUserSearch.hook'
 
 const App: React.FC = () => {
-  const {data, loading, error, dispatchRequest} = useUserSearch()
+  const { data, loading, error, dispatchRequest } = useUserSearch()
 
   // Execute request
   useEffect(() => dispatchRequest('cyrilcolinet'), [])
 
   // When data field edited, apply this callback
   useEffect(() => {
-    console.log(data);
+    console.log(data)
   }, [data])
 
   return (
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
+        <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.scrollView}>
           <Header />
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Ferme ta gueule
-              </Text>
+              <Text style={styles.sectionDescription}>Ferme ta gueule</Text>
             </View>
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>See Your Changes</Text>
@@ -57,17 +46,15 @@ const App: React.FC = () => {
             </View>
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
+              <Text style={styles.sectionDescription}>Read the docs to discover what to do next:</Text>
             </View>
             <LearnMoreLinks />
           </View>
         </ScrollView>
       </SafeAreaView>
     </>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -106,6 +93,6 @@ const styles = StyleSheet.create({
     paddingRight: 12,
     textAlign: 'right',
   },
-});
+})
 
-export default App;
+export default App

@@ -1,6 +1,6 @@
 import useAxios from 'axios-hooks'
-import { GithubResponse } from '../../typings/github-response.type'
-import { UserSearchResult } from '../../typings/user/user-search-result.type'
+import { GithubResponse } from '../../types/github-response.type'
+import { UserSearchResult } from '../../types/user/user-search-result.type'
 
 const useUserSearch: Function = () => {
   const [{ data, loading, error }, execute] = useAxios<GithubResponse<UserSearchResult[]>>({}, { manual: true })
