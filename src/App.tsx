@@ -5,11 +5,13 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { persistor, store } from './redux'
 import MainNavigator from './navigators/MainNavigator'
 import { NavigationContainer } from '@react-navigation/native'
-import { ApplicationProvider, IconRegistry } from '@ui-kitten/components'
+import { ApplicationProvider, IconRegistry, useTheme } from '@ui-kitten/components'
 import * as eva from '@eva-design/eva'
 import { EvaIconsPack } from '@ui-kitten/eva-icons'
 
 const App: React.FC = () => {
+  const theme = useTheme()
+
   return (
     <>
       <IconRegistry icons={EvaIconsPack} />

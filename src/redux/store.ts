@@ -5,16 +5,18 @@ import { Persistor } from 'redux-persist/es/types'
 import AsyncStorage from '@react-native-community/async-storage'
 import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE } from 'redux-persist/es/constants'
 import { favouriteReducer } from './favourite/reducer'
+import { userReducer } from './user/reducer'
 
 const rootReducer: any = combineReducers({
   base: baseReducer.reducer,
   favourite: favouriteReducer.reducer,
+  user: userReducer.reducer,
 })
 
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['base', 'favourite'],
+  whitelist: ['base', 'favourite', 'user'],
   debug: false,
 }
 
