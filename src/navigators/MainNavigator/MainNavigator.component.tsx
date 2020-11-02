@@ -6,8 +6,8 @@ const Stack = createStackNavigator()
 
 const MainNavigator: React.FC = () => {
   return (
-    <Stack.Navigator initialRouteName={'Dashboard'} screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Dashboard" component={BottomNavigator} />
+    <Stack.Navigator initialRouteName={'BottomNavigator'} screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="BottomNavigator" component={BottomNavigator} />
     </Stack.Navigator>
   )
 }

@@ -4,7 +4,7 @@ import FavouriteScreen from '../../screens/FavouriteScreen'
 
 const Stack = createStackNavigator()
 
-const DashboardStackNavigator: React.FC = () => {
+const FavouriteStackNavigator: React.FC = () => {
   return (
     <Stack.Navigator initialRouteName={'Favourites'}>
       <Stack.Screen name="Favourites" component={FavouriteScreen} />
@@ -12,4 +12,4 @@ const DashboardStackNavigator: React.FC = () => {
   )
 }
 
-export default DashboardStackNavigator
+export default FavouriteStackNavigator

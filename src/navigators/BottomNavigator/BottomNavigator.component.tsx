@@ -1,16 +1,19 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { BottomTabBarProps } from '@react-navigation/bottom-tabs/src/types'
 import BottomNav from './BottomNav'
-import DashboardStackNavigator from '../DashboardStackNavigator'
+import FavouriteStackNavigator from '../FavouritesStackNavigator'
+import SearchStackNavigator from '../SearchStackNavigator'
+import ProfileStackNavigator from '../ProfileStackNavigator'
 
-const Tab = createBottomTabNavigator()
+const { Navigator, Screen } = createBottomTabNavigator()
 
 const BottomNavigator: React.FC = () => {
   return (
-    <Tab.Navigator initialRouteName={'Dashboard'} tabBar={(props): BottomTabBarProps => <BottomNav {...props} />}>
-      <Tab.Screen name="Settings" component={DashboardStackNavigator} />
-    </Tab.Navigator>
+    <Navigator tabBar={(props) => <BottomNav {...props} />}>
+      <Screen name="Favourites" component={FavouriteStackNavigator} />
+      <Screen name="Search" component={SearchStackNavigator} />
+      <Screen name="Profile" component={ProfileStackNavigator} />
+    </Navigator>
   )
 }
 
