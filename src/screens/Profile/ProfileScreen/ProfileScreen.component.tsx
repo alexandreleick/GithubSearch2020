@@ -3,7 +3,7 @@ import { Layout, Text } from '@ui-kitten/components'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectIsAuthenticated } from '../../../redux/user/selectors'
 import { userReducer } from '../../../redux/user/reducer'
-import UnAuthenticated from '../shared/UnAuthenticated'
+import UnAuthenticated from './UnAuthenticated'
 
 const ProfileScreen: React.FC = () => {
   const isAuthenticated: boolean = useSelector(selectIsAuthenticated)
