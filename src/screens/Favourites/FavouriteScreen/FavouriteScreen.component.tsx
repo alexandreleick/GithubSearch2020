@@ -1,11 +1,32 @@
 import React from 'react'
-import { Layout, Text } from '@ui-kitten/components'
+import { TextInput } from 'react-native'
+import { Layout, Text, Button, Avatar, ListItem } from '@ui-kitten/components'
+
+const Favourites = () => (
+    <Button size='tiny'>
+        Delete
+    </Button>
+);
+
+const ItemImage = () => (
+    <Avatar
+        source={require('../../../assets/icon/icon.png')}
+    />
+);
 
 const FavouriteScreen: React.FC = () => {
   return (
-    <Layout level="2" style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text category="h1">FAVOURITES</Text>
-    </Layout>
+      <>
+         <Button>
+             Add an item
+         </Button>
+          <ListItem
+              title='Item 1'
+              description='A set of React Native components'
+              accessoryLeft={ItemImage}
+              accessoryRight={Favourites}
+          />
+      </>
   )
 }
 
