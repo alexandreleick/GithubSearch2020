@@ -9,7 +9,7 @@ const SearchStackNavigator: React.FC = () => {
   return (
     <Stack.Navigator initialRouteName={'Search'}>
       <Stack.Screen name="Search" options={{ title: 'Search Users / Repositories' }} component={SearchScreen} />
-      <Stack.Screen name="Result" options={{ title: 'Search Users / Repositories' }} component={ResultScreen} />
+      <Stack.Screen name="Result" options={{ title: 'Results' }} component={ResultScreen} />
     </Stack.Navigator>
   )
 }

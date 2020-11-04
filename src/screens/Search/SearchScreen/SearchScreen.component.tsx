@@ -4,7 +4,6 @@ import { components } from '@eva-design/eva/mapping'
 import { View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import useUserSearch from '../../../hooks/user/useUserSearch.hook'
-import ResultScreen from "../../Result";
 
 const SearchScreen: React.FC = () => {
   const [value, setValue] = React.useState('')
@@ -12,13 +11,15 @@ const SearchScreen: React.FC = () => {
 
   const { data, loading, error, dispatchRequest } = useUserSearch()
   useEffect(() => {
-    console.log(data)
+    if (!data) {
+      console.log(data)
+    }
   })
   const onChangeSearch = (query: string) => setValue(query)
 
   const onSubmit = () => {
     dispatchRequest(value)
-    navigate('Result')
+    //navigate('Result')
   }
 
   return (
@@ -43,6 +44,9 @@ const SearchScreen: React.FC = () => {
         >
           Search
         </Button>
+      </View>
+      <View>
+        <Text>{data.items[0].login}</Text>
       </View>
     </>
   )
