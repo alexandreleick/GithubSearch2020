@@ -4,6 +4,7 @@ import { components } from '@eva-design/eva/mapping'
 import { View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import useUserSearch from '../../../hooks/user/useUserSearch.hook'
+import useRepoSearch from '../../../hooks/repositories/useRepoSearch.hook'
 
 const SearchScreen: React.FC = () => {
   const [value, setValue] = React.useState('')
@@ -11,6 +12,7 @@ const SearchScreen: React.FC = () => {
   const [login, setLogin] = React.useState('')
 
   const { data, loading, error, dispatchRequest } = useUserSearch()
+  const { data: datas, dispatchRepo} = useRepoSearch()
   /*useEffect(() => {
     if (data !== undefined && data.items.length) {
       setLogin(data.items[0].login)
@@ -21,6 +23,8 @@ const SearchScreen: React.FC = () => {
 
   const onSubmit = () => {
     dispatchRequest(value)
+    dispatchRepo(value)
+    console.log(datas)
     //navigate('Result')
   }
 
