@@ -61,6 +61,25 @@ const SearchScreen: React.FC = () => {
     return null
   }
 
+  const renderTab = () => {
+    if (datas !== undefined && data !== undefined)
+      return (
+        <TabView
+          selectedIndex={selectedIndex}
+          shouldLoadComponent={shouldLoadComponent}
+          onSelect={(index) => setSelectedIndex(index)}
+        >
+          <Tab title={'Repositories: ' + datas.items.length}>
+            <View>{renderRepoElement()}</View>
+          </Tab>
+          <Tab title={'Users: ' + data.items.length}>
+            <View>{renderElement()}</View>
+          </Tab>
+        </TabView>
+      )
+    return null
+  }
+
   const [selectedIndex, setSelectedIndex] = useState<number>(0)
 
   const shouldLoadComponent = (index: number) => index === selectedIndex
@@ -90,20 +109,7 @@ const SearchScreen: React.FC = () => {
             Search
           </Button>
         </View>
-        <View>
-          <TabView
-            selectedIndex={selectedIndex}
-            shouldLoadComponent={shouldLoadComponent}
-            onSelect={(index) => setSelectedIndex(index)}
-          >
-            <Tab title={'Repositories: ' + datas.items.length}>
-              <View>{renderRepoElement()}</View>
-            </Tab>
-            <Tab title={'Users: ' + data.items.length}>
-              <View>{renderElement()}</View>
-            </Tab>
-          </TabView>
-        </View>
+        <View>{renderTab()}</View>
       </ScrollView>
     </>
   )
