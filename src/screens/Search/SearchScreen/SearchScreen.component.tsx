@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Input, Layout, Text, Button, ListItem, Avatar } from '@ui-kitten/components'
+import { Input, Layout, Text, Button, ListItem, Avatar, TabView, Tab } from '@ui-kitten/components'
 import { components } from '@eva-design/eva/mapping'
 import { View, Image, ScrollView } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import useUserSearch from '../../../hooks/user/useUserSearch.hook'
 import useRepoSearch from '../../../hooks/repositories/useRepoSearch.hook'
+import { ProfileDetailsView } from '../../Profile/ProfileScreen/ProfileDetails/ProfileDetails.styled'
 
 const SearchScreen: React.FC = () => {
   const [value, setValue] = useState<string>('')
@@ -60,6 +61,10 @@ const SearchScreen: React.FC = () => {
     return null
   }
 
+  const [selectedIndex, setSelectedIndex] = useState<number>(0)
+
+  const shouldLoadComponent = (index: number) => index === selectedIndex
+
   return (
     <>
       <ScrollView>
@@ -85,7 +90,20 @@ const SearchScreen: React.FC = () => {
             Search
           </Button>
         </View>
-        <View>{renderRepoElement()}</View>
+        <View>
+          <TabView
+            selectedIndex={selectedIndex}
+            shouldLoadComponent={shouldLoadComponent}
+            onSelect={(index) => setSelectedIndex(index)}
+          >
+            <Tab title="Repositories">
+              <View>{renderRepoElement()}</View>
+            </Tab>
+            <Tab title="Users">
+              <View>{renderElement()}</View>
+            </Tab>
+          </TabView>
+        </View>
       </ScrollView>
     </>
   )
