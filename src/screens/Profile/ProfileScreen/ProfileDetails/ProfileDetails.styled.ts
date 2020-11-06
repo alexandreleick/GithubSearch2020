@@ -1,10 +1,7 @@
 import styled from 'styled-components/native'
-import { Card } from '@ui-kitten/components'
 
 export const ProfileDetailsView = styled.View`
   margin-top: 20px;
-  margin-horizontal: 15px;
-  border-radius: 10px;
 `
 
 export const UserPart = styled.View`

@@ -1,32 +1,31 @@
 import React, { useState } from 'react'
-import { Text, View, StyleSheet } from 'react-native'
-import { useSelector } from 'react-redux'
-import { selectUser } from '../../../../redux/user/selectors'
-import { AuthenticatedUser } from '../../../../types/user/authenticated-user.type'
-import { Avatar, Layout, Tab, TabView, useTheme } from '@ui-kitten/components'
+import { StyleSheet, Text, useWindowDimensions } from 'react-native'
+import { Icon, IconProps, Tab, TabView } from '@ui-kitten/components'
 import { ProfileDetailsView } from './ProfileDetails.styled'
+import ProfileRepositories from '../shared/ProfileRepositories/ProfileRepositories.component'
 
 const ProfileDetails: React.FC = () => {
-  const user: AuthenticatedUser = useSelector(selectUser)
-  const theme = useTheme()
   const [selectedIndex, setSelectedIndex] = useState<number>(0)
+  const { height } = useWindowDimensions()
 
-  const shouldLoadComponent = (index: number) => index === selectedIndex
+  const RepositoriesIcon = (props: IconProps) => <Icon {...props} name="archive-outline" />
+  const FollowersIcon = (props: IconProps) => <Icon {...props} name="people-outline" />
+  const FollowingIcon = (props: IconProps) => <Icon {...props} name="person-done-outline" />
 
   return (
-    <ProfileDetailsView>
+    <ProfileDetailsView style={{ borderTopColor: '#F4F4F4', borderTopWidth: 1 }}>
       <TabView
         selectedIndex={selectedIndex}
-        shouldLoadComponent={shouldLoadComponent}
         onSelect={(index) => setSelectedIndex(index)}
+        style={{ height: height / 2 + 100 }}
       >
-        <Tab title="Repositories">
-          <Text category="h5">USERS</Text>
+        <Tab title="Repositories" icon={RepositoriesIcon}>
+          <ProfileRepositories />
         </Tab>
-        <Tab title="Followers">
+        <Tab title="Followers" icon={FollowersIcon}>
           <Text category="h5">ORDERS</Text>
         </Tab>
-        <Tab title="Following">
+        <Tab title="Following" icon={FollowingIcon}>
           <Text category="h5">TRANSACTIONS</Text>
         </Tab>
       </TabView>

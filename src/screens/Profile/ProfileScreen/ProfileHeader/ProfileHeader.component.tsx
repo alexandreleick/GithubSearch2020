@@ -1,16 +1,14 @@
 import React from 'react'
-import { Text, View } from 'react-native'
 import {
-  ProfileCard,
   LeftUserPart,
-  UserName,
-  UserPart,
-  StatisticsPart,
-  StatisticsTitle,
   Login,
+  ProfileCard,
   Stat,
+  StatisticsPart,
   StatName,
   StatValue,
+  UserName,
+  UserPart,
 } from './ProfileHeader.styled'
 import { useSelector } from 'react-redux'
 import { selectUser } from '../../../../redux/user/selectors'

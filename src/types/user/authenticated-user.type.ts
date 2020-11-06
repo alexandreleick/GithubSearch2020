@@ -15,4 +15,7 @@ export type AuthenticatedUser = {
   public_repos: number
   total_private_repos: number
   owned_private_repos: number
+
+  // Urls
+  repos_url: string
 }

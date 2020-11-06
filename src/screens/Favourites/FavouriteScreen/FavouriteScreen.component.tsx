@@ -1,6 +1,6 @@
 import React from 'react'
-import { TextInput, Animated, View } from 'react-native'
-import { Layout, Text, Avatar, Button, ListItem } from '@ui-kitten/components'
+import { View } from 'react-native'
+import { Avatar, Button, ListItem } from '@ui-kitten/components'
 
 const Favourites = () => <Button size="tiny">Delete</Button>
 

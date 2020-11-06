@@ -1,5 +1,5 @@
 import CustomBottomSheet from '../CustomBottomSheet'
-import React, { ReactNode } from 'react'
+import React from 'react'
 import { AlertContainer, AlertMessage, ButtonsContainer } from './AlertBottomSheet.styled'
 import Button from '../../Button'
 import { Color } from '../../Button/Button.styled'

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef } from 'react'
 import { ToastContext } from './ToastProvider.component'
-import { Text, Animated, Easing, TouchableOpacity } from 'react-native'
+import { Animated, Easing, Text, TouchableOpacity } from 'react-native'
 import { styles } from './Toast.styled'
 import { useTheme } from '@ui-kitten/components'
 

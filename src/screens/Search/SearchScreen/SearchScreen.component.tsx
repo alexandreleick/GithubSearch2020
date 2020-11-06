@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { Input, Layout, Text, Button, ListItem, Avatar, TabView, Tab } from '@ui-kitten/components'
-import { components } from '@eva-design/eva/mapping'
-import { View, Image, ScrollView } from 'react-native'
+import React, { useState } from 'react'
+import { Avatar, Button, Input, ListItem, Tab, TabView } from '@ui-kitten/components'
+import { ScrollView, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
-import useUserSearch from '../../../hooks/user/useUserSearch.hook'
-import useRepoSearch from '../../../hooks/repositories/useRepoSearch.hook'
-import { ProfileDetailsView } from '../../Profile/ProfileScreen/ProfileDetails/ProfileDetails.styled'
+import useUserSearch from '../../../hooks/search/useUserSearch.hook'
+import useRepoSearch from '../../../hooks/search/useRepoSearch.hook'
 
 const SearchScreen: React.FC = () => {
   const [value, setValue] = useState<string>('')

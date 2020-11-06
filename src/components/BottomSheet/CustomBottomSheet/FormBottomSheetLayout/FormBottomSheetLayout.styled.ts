@@ -1,6 +1,5 @@
 import styled from 'styled-components/native'
-import { Title } from 'react-native-paper'
-import { View, StyleSheet } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 
 export const styles = StyleSheet.create({
   contentContainer: {
