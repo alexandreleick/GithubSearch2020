@@ -5,6 +5,7 @@ import { selectIsAuthenticated } from '../../../redux/user/selectors'
 import { userReducer } from '../../../redux/user/reducer'
 import UnAuthenticatedScreen from '../UnAuthenticatedScreen'
 import ProfileHeader from './ProfileHeader/ProfileHeader.component'
+import ProfileDetails from './ProfileDetails/ProfileDetails.component'
 
 const ProfileScreen: React.FC = () => {
   const isAuthenticated: boolean = useSelector(selectIsAuthenticated)
@@ -18,6 +19,7 @@ const ProfileScreen: React.FC = () => {
       {isAuthenticated ? (
         <Layout level="2" style={{ flex: 1 }}>
           <ProfileHeader />
+          <ProfileDetails />
         </Layout>
       ) : (
         <UnAuthenticatedScreen />
