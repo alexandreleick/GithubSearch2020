@@ -12,7 +12,7 @@ const SearchScreen: React.FC = () => {
   const [login, setLogin] = React.useState('')
 
   const { data, loading, error, dispatchRequest } = useUserSearch()
-  const { data: datas, dispatchRepo} = useRepoSearch()
+  const { data: datas, dispatchRepo } = useRepoSearch()
   /*useEffect(() => {
     if (data !== undefined && data.items.length) {
       setLogin(data.items[0].login)
@@ -33,9 +33,15 @@ const SearchScreen: React.FC = () => {
 
   const renderElement = () => {
     if (data !== undefined)
-      return (
-        <ListItem title={data.items[0].login} description="Test" accessoryLeft={ItemImage} accessoryRight={Favorites} />
-      )
+      return data.items.map((searchItem: any, index: number) => (
+        <ListItem
+          key={index}
+          title={searchItem.login}
+          description="Test"
+          accessoryLeft={ItemImage}
+          accessoryRight={Favorites}
+        />
+      ))
     return null
   }
 
