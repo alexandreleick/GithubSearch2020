@@ -15,9 +15,22 @@ import {
 } from './ProfileRepositories.styled'
 import * as languageColor from '../../../../../utils/language-colors.json'
 import Badge from '../../../../../components/Badge/Badge.component'
+import { GithubLanguagesColor } from '../../../../../types/github-languages-color.type'
 
 const ProfileRepositories: React.FC = () => {
   const { data, loading, error } = useFindProfileRepositories()
+
+  // Get color of the github language
+  const getLanguageColor = (language: string) => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    const languageTs: GithubLanguagesColor = languageColor
+    if (languageTs[language]) {
+      return languageTs[language]['color'] || 'grey'
+    }
+
+    return 'grey'
+  }
 
   return (
     <ProfileDetailsTab>
@@ -34,7 +47,7 @@ const ProfileRepositories: React.FC = () => {
               <RepositoryDescription>{textEmoji(repo.description || '')}</RepositoryDescription>
             </RepositoryHead>
             <LanguageContainer>
-              <Badge color={(languageColor[repo.language] && languageColor[repo.language].color) || 'grey'} />
+              <Badge color={getLanguageColor(repo.language)} />
               <LanguageName>{repo.language}</LanguageName>
             </LanguageContainer>
           </RepositoryCard>
