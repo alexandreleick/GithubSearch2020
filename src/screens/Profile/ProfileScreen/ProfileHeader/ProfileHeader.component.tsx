@@ -8,6 +8,7 @@ import {
   StatisticsPart,
   StatisticsTitle,
   Login,
+  Stat,
 } from './ProfileHeader.styled'
 import { useSelector } from 'react-redux'
 import { selectUser } from '../../../../redux/user/selectors'
@@ -20,7 +21,7 @@ const ProfileHeader: React.FC = () => {
   return (
     <ProfileCard>
       <UserPart>
-        <Avatar source={{ uri: user.avatar_url }} />
+        <Avatar source={{ uri: user.avatar_url, cache: 'force-cache' }} />
         <LeftUserPart>
           <UserName>{user.name}</UserName>
           <Login>@{user.login}</Login>
@@ -28,6 +29,7 @@ const ProfileHeader: React.FC = () => {
       </UserPart>
       <StatisticsTitle>About you</StatisticsTitle>
       <StatisticsPart>
+        <Stat></Stat>
         <Text>oui</Text>
         <Text>oui</Text>
         <Text>oui</Text>

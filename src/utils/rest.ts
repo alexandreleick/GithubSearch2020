@@ -15,7 +15,9 @@ export const axios = Axios.create(axiosConfig)
 axios.interceptors.request.use(
   async (config: AxiosRequestConfig) => {
     const authInfos = await loadAuthInfos()
-    config.headers.Authorization = 'Bearer ' + authInfos?.token
+    if (authInfos) {
+      config.headers.Authorization = 'Bearer ' + authInfos?.token
+    }
     return config
   },
   (error) => {

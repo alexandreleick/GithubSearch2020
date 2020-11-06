@@ -47,7 +47,7 @@ const SearchScreen: React.FC = () => {
   }
 
   const renderRepoElement = () => {
-    if (data !== undefined)
+    if (datas !== undefined)
       return datas.items.map((searchItem: any, index: number) => (
         <ListItem
           key={index}

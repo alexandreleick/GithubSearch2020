@@ -41,3 +41,9 @@ export const StatisticsTitle = styled.Text`
 `
 
 export const Stat = styled.View``
+
+export const StatName = styled.Text`
+  font-size: 14px;
+  justify-content: flex-end;
+  color: grey;
+`

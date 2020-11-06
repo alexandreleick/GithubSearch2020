@@ -2,10 +2,12 @@ import React, { useContext, useEffect, useRef } from 'react'
 import { ToastContext } from './ToastProvider.component'
 import { Text, Animated, Easing, TouchableOpacity } from 'react-native'
 import { styles } from './Toast.styled'
+import { useTheme } from '@ui-kitten/components'
 
 export const Toast = () => {
   const { toast, hide } = useContext(ToastContext)
   const translateYRef = useRef(new Animated.Value(-100))
+  const theme = useTheme()
 
   useEffect(() => {
     if (toast.visible) {
@@ -25,18 +27,7 @@ export const Toast = () => {
     }
   }, [toast])
 
-  const backgroundColor: string = (() => {
-    switch (toast.type) {
-      case 'danger':
-        return 'red'
-      case 'success':
-        return 'green'
-      case 'info':
-        return 'primary'
-      case 'warning':
-        return 'orange'
-    }
-  })()
+  const backgroundColor: string = theme['color-' + toast.type + '-500']
 
   return (
     <Animated.View
