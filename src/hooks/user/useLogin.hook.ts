@@ -1,7 +1,9 @@
 import { useDispatch } from 'react-redux'
 import { userReducer } from '../../redux/user/reducer'
 import { saveAuthInfos } from '../../utils/auth'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import useFindProfileUser from './useFindProfileUser.hook'
+import { ToastContext } from '../../providers/ToastProvider/ToastProvider.component'
 
 export type LoginData = {
   access_token: string
@@ -13,14 +15,22 @@ export type LoginData = {
 const useLogin: Function = () => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false)
   const dispatch = useDispatch()
+  const { data, dispatchRequest } = useFindProfileUser()
+  const { show } = useContext(ToastContext)
 
   // TODO: /me to get user info
   const dispatchLogin: Function = (loginData: LoginData) => {
-    //dispatch(userReducer.actions.setUser(user))
-    dispatch(userReducer.actions.setToken(loginData.access_token))
-    Promise.all([saveAuthInfos({ token: loginData.access_token })])
-      .then(() => setLoggedIn(true))
-      .catch(() => setLoggedIn(false))
+    Promise.all([dispatchRequest(), saveAuthInfos({ token: loginData.access_token })])
+      .then(() => {
+        console.log(data)
+        setLoggedIn(true)
+        //dispatch(userReducer.actions.setUser(user))
+        dispatch(userReducer.actions.setToken(loginData.access_token))
+      })
+      .catch((err) => {
+        setLoggedIn(false)
+        show({ message: err.message })
+      })
   }
 
   return { dispatchLogin, loggedIn }

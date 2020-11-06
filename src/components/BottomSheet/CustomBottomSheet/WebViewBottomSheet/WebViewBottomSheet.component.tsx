@@ -21,6 +21,7 @@ const WebViewBottomSheet: React.FC<Props> = (props: Props) => {
     <CustomBottomSheet isVisible={isModalVisible} toggleBottom={toggleModal}>
       <Container bottom={bottom}>
         <WebView
+          cacheMode={'LOAD_NO_CACHE'}
           cacheEnabled={false}
           onNavigationStateChange={onNavigationStateChange}
           source={{ uri }}

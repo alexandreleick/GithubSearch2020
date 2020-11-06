@@ -8,6 +8,8 @@ import { NavigationContainer } from '@react-navigation/native'
 import { ApplicationProvider, IconRegistry, useTheme } from '@ui-kitten/components'
 import * as eva from '@eva-design/eva'
 import { EvaIconsPack } from '@ui-kitten/eva-icons'
+import { ToastProvider } from './providers/ToastProvider/ToastProvider.component'
+import Toast from './providers/ToastProvider/Toast.component'
 
 const App: React.FC = () => {
   const theme = useTheme()
@@ -18,11 +20,14 @@ const App: React.FC = () => {
       <ApplicationProvider {...eva} theme={eva.light}>
         <Provider store={store}>
           <SafeAreaProvider>
-            <PersistGate loading={null} persistor={persistor}>
-              <NavigationContainer>
-                <MainNavigator />
-              </NavigationContainer>
-            </PersistGate>
+            <ToastProvider>
+              <Toast />
+              <PersistGate loading={null} persistor={persistor}>
+                <NavigationContainer>
+                  <MainNavigator />
+                </NavigationContainer>
+              </PersistGate>
+            </ToastProvider>
           </SafeAreaProvider>
         </Provider>
       </ApplicationProvider>

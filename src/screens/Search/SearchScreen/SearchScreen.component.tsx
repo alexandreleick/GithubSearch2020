@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Input, Layout, Text, Button, ListItem, Avatar } from '@ui-kitten/components'
 import { components } from '@eva-design/eva/mapping'
 import { View, Image, ScrollView } from 'react-native'
@@ -7,9 +7,9 @@ import useUserSearch from '../../../hooks/user/useUserSearch.hook'
 import useRepoSearch from '../../../hooks/repositories/useRepoSearch.hook'
 
 const SearchScreen: React.FC = () => {
-  const [value, setValue] = React.useState('')
+  const [value, setValue] = useState<string>('')
   const { navigate } = useNavigation()
-  const [login, setLogin] = React.useState('')
+  const [login, setLogin] = useState('')
 
   const { data, loading, error, dispatchRequest } = useUserSearch()
   const { data: datas, dispatchRepo } = useRepoSearch()
