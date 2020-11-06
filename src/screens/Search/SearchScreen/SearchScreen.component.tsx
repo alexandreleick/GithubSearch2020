@@ -96,10 +96,10 @@ const SearchScreen: React.FC = () => {
             shouldLoadComponent={shouldLoadComponent}
             onSelect={(index) => setSelectedIndex(index)}
           >
-            <Tab title="Repositories">
+            <Tab title={'Repositories: ' + datas.items.length}>
               <View>{renderRepoElement()}</View>
             </Tab>
-            <Tab title="Users">
+            <Tab title={'Users: ' + data.items.length}>
               <View>{renderElement()}</View>
             </Tab>
           </TabView>
