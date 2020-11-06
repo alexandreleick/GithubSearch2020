@@ -10,14 +10,13 @@ import * as eva from '@eva-design/eva'
 import { EvaIconsPack } from '@ui-kitten/eva-icons'
 import { ToastProvider } from './providers/ToastProvider/ToastProvider.component'
 import Toast from './providers/ToastProvider/Toast.component'
+import theme from './theme.json'
 
 const App: React.FC = () => {
-  const theme = useTheme()
-
   return (
     <>
       <IconRegistry icons={EvaIconsPack} />
-      <ApplicationProvider {...eva} theme={eva.light}>
+      <ApplicationProvider {...eva} theme={{ ...eva.light, ...theme }}>
         <Provider store={store}>
           <SafeAreaProvider>
             <ToastProvider>

@@ -1,8 +1,8 @@
 import React from 'react'
 import LottieView from 'lottie-react-native'
-import { Button, Icon, IconProps, Text } from '@ui-kitten/components'
-import useBottomSheet from '../../../../hooks/common/useBottomSheet.hook'
-import WebViewBottomSheet from '../../../../components/BottomSheet/CustomBottomSheet/WebViewBottomSheet'
+import { Button, Icon, IconProps, Layout, Text } from '@ui-kitten/components'
+import useBottomSheet from '../../../hooks/common/useBottomSheet.hook'
+import WebViewBottomSheet from '../../../components/BottomSheet/CustomBottomSheet/WebViewBottomSheet'
 import {
   ACCESS_TOKEN_URL,
   APP_CLIENT_ID,
@@ -10,11 +10,11 @@ import {
   CALLBACK_URL,
   parseQueryParameters,
   rest,
-} from '../../../../utils/rest'
+} from '../../../utils/rest'
 import { WebViewNavigation } from 'react-native-webview'
-import useLogin from '../../../../hooks/user/useLogin.hook'
+import useLogin from '../../../hooks/user/useLogin.hook'
 
-const UnAuthenticated: React.FC = () => {
+const UnAuthenticatedScreen: React.FC = () => {
   const { dispatchLogin } = useLogin()
   const { isVisible: webviewIsVisible, toggleBottomSheet: webviewToggle } = useBottomSheet()
 
@@ -42,9 +42,9 @@ const UnAuthenticated: React.FC = () => {
   }
 
   return (
-    <>
+    <Layout level="2" style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <LottieView
-        source={require('../../../../assets/animations/unauthenticated.json')}
+        source={require('../../../assets/animations/unauthenticated.json')}
         speed={0.5}
         autoPlay
         style={{
@@ -67,8 +67,8 @@ const UnAuthenticated: React.FC = () => {
           onNavigationStateChange={onOauthStateChanged}
         />
       )}
-    </>
+    </Layout>
   )
 }
 
-export default UnAuthenticated
+export default UnAuthenticatedScreen

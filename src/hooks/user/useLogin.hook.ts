@@ -5,6 +5,7 @@ import { useContext, useState } from 'react'
 import useFindProfileUser from './useFindProfileUser.hook'
 import { ToastContext } from '../../providers/ToastProvider/ToastProvider.component'
 import { AuthenticatedUser } from '../../types/user/authenticated-user.type'
+import { useNavigation } from '@react-navigation/native'
 
 export type LoginData = {
   access_token: string
@@ -18,6 +19,7 @@ const useLogin: Function = () => {
   const dispatch = useDispatch()
   const { dispatchRequest } = useFindProfileUser()
   const { show } = useContext(ToastContext)
+  const { navigate } = useNavigation()
 
   // TODO: /me to get user info
   const dispatchLogin: Function = (loginData: LoginData) => {
