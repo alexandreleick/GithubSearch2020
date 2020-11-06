@@ -1,12 +1,11 @@
 import styled from 'styled-components/native'
-import { theme } from '../../theme'
 
-export const BadgeContainer = styled.View<{ color?: string }>`
+export const BadgeContainer = styled.View<{ color: string }>`
   height: 30px;
   margin-top: 10px;
   font-size: 13px;
   line-height: 1px;
   text-align: center;
   border-radius: 15px;
-  background-color: ${({ color }) => (color ? color : theme.colors.primary)};
+  background-color: ${({ color }) => color};
 `
