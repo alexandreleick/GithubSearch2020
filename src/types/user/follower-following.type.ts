@@ -1,4 +1,4 @@
-export type RepositoryOwner = {
+export type Follower = {
   login: string
   id: number
   node_id: string

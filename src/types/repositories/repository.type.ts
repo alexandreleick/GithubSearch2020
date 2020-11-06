@@ -1,5 +1,5 @@
-import { RepositoryOwner } from './repository-owner.type'
-import { RepositoryLicense } from './repository-licence.type'
+import { Owner } from '../common/owner.type'
+import { Licence } from '../common/licence.type'
 
 export type Repository = {
   id: number
@@ -7,7 +7,7 @@ export type Repository = {
   name: string
   full_name: string
   private: boolean
-  owner: RepositoryOwner
+  owner: Owner
   html_url: string
   description: string
   fork: boolean
@@ -70,7 +70,7 @@ export type Repository = {
   archived: boolean
   disabled: boolean
   open_issues_count: number
-  license: RepositoryLicense
+  license: Licence
   forks: number
   open_issues: number
   watchers: number

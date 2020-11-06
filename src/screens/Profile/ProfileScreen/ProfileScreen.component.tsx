@@ -9,10 +9,6 @@ import ProfileDetails from './ProfileDetails/ProfileDetails.component'
 const ProfileScreen: React.FC = () => {
   const isAuthenticated: boolean = useSelector(selectIsAuthenticated)
 
-  // TODO: Debug
-  //const dispatch = useDispatch()
-  //dispatch(userReducer.actions.logout({}))
-
   return (
     <>
       {isAuthenticated ? (

@@ -6,7 +6,7 @@ import { textEmoji } from 'markdown-to-text-emoji'
 import {
   LanguageContainer,
   LanguageName,
-  ProfileDetailsTab,
+  ProfileRepositoriesTab,
   RepositoryCard,
   RepositoryDescription,
   RepositoryHead,
@@ -33,7 +33,7 @@ const ProfileRepositories: React.FC = () => {
   }
 
   return (
-    <ProfileDetailsTab>
+    <ProfileRepositoriesTab>
       {loading ? (
         <Spinner status="primary" />
       ) : (
@@ -42,7 +42,7 @@ const ProfileRepositories: React.FC = () => {
             <RepositoryHead>
               <RepositoryNameContainer>
                 {repo.private && <Icon name="lock-outline" />}
-                <RepositoryName>{repo.full_name}</RepositoryName>
+                <RepositoryName>{repo.name}</RepositoryName>
               </RepositoryNameContainer>
               <RepositoryDescription>{textEmoji(repo.description || '')}</RepositoryDescription>
             </RepositoryHead>
@@ -53,7 +53,7 @@ const ProfileRepositories: React.FC = () => {
           </RepositoryCard>
         ))
       )}
-    </ProfileDetailsTab>
+    </ProfileRepositoriesTab>
   )
 }
 

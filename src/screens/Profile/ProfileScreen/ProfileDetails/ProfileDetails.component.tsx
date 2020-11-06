@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, useWindowDimensions } from 'react-native'
+import { StyleSheet, useWindowDimensions } from 'react-native'
 import { Icon, IconProps, Tab, TabView } from '@ui-kitten/components'
 import { ProfileDetailsView } from './ProfileDetails.styled'
 import ProfileRepositories from '../shared/ProfileRepositories/ProfileRepositories.component'
+import ProfileFollowers from '../shared/ProfileFollowers/ProfileFollowers.component'
+import ProfileFollowing from '../shared/ProfileFollowing/ProfileFollowing.component'
 
 const ProfileDetails: React.FC = () => {
   const [selectedIndex, setSelectedIndex] = useState<number>(0)
@@ -23,10 +25,10 @@ const ProfileDetails: React.FC = () => {
           <ProfileRepositories />
         </Tab>
         <Tab title="Followers" icon={FollowersIcon}>
-          <Text category="h5">ORDERS</Text>
+          <ProfileFollowers />
         </Tab>
         <Tab title="Following" icon={FollowingIcon}>
-          <Text category="h5">TRANSACTIONS</Text>
+          <ProfileFollowing />
         </Tab>
       </TabView>
     </ProfileDetailsView>

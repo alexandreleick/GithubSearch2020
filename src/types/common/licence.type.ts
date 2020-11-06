@@ -1,4 +1,4 @@
-export type RepositoryLicense = {
+export type Licence = {
   key: string
   name: string
   spdx_id: string

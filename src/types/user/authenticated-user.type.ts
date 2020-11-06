@@ -18,4 +18,6 @@ export type AuthenticatedUser = {
 
   // Urls
   repos_url: string
+  followers_url: string
+  following_url: string
 }

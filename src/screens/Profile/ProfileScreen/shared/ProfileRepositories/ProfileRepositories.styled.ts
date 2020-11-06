@@ -1,7 +1,7 @@
 import styled from 'styled-components/native'
 import { Card } from '@ui-kitten/components'
 
-export const ProfileDetailsTab = styled.ScrollView`
+export const ProfileRepositoriesTab = styled.ScrollView`
   min-height: 200px;
   padding-top: 10px;
 `
@@ -19,6 +19,7 @@ export const RepositoryHead = styled.View`
 export const RepositoryNameContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
+  margin-bottom: 5px;
 `
 
 export const RepositoryName = styled.Text`

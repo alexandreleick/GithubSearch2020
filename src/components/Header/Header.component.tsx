@@ -1,0 +1,46 @@
+import React, { useContext } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Icon, IconProps, TopNavigation, TopNavigationAction } from '@ui-kitten/components'
+import { userReducer } from '../../redux/user/reducer'
+import { selectIsAuthenticated, selectUser } from '../../redux/user/selectors'
+import { AuthenticatedUser } from '../../types/user/authenticated-user.type'
+import { StackHeaderProps } from '@react-navigation/stack'
+import { View } from 'react-native'
+import { ToastContext } from '../../providers/ToastProvider/ToastProvider.component'
+
+const LogoutIcon = (props: IconProps) => <Icon {...props} name="power-outline" />
+
+interface HeaderCustomProps extends StackHeaderProps {
+  title?: string
+}
+
+const Header: React.FC<HeaderCustomProps> = (props: HeaderCustomProps) => {
+  const { insets, scene, title } = props
+  const isAuthenticated: boolean = useSelector(selectIsAuthenticated)
+  const user: AuthenticatedUser = useSelector(selectUser)
+  const dispatch = useDispatch()
+  const { show } = useContext(ToastContext)
+
+  const LogoutAction = () => (
+    <TopNavigationAction
+      icon={LogoutIcon}
+      onPress={() => {
+        show({ message: 'GoodBye ' + user.login + ', see you soon!', type: 'info' })
+        dispatch(userReducer.actions.logout({}))
+      }}
+    />
+  )
+
+  return (
+    <View style={{ backgroundColor: 'white', paddingTop: insets.top }}>
+      <TopNavigation
+        alignment="center"
+        title={title || scene.route.name}
+        subtitle={isAuthenticated ? '@' + user.login : ''}
+        accessoryRight={LogoutAction}
+      />
+    </View>
+  )
+}
+
+export default Header
