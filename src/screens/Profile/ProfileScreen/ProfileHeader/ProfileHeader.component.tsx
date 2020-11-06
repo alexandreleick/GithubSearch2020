@@ -9,6 +9,8 @@ import {
   StatisticsTitle,
   Login,
   Stat,
+  StatName,
+  StatValue,
 } from './ProfileHeader.styled'
 import { useSelector } from 'react-redux'
 import { selectUser } from '../../../../redux/user/selectors'
@@ -27,13 +29,26 @@ const ProfileHeader: React.FC = () => {
           <Login>@{user.login}</Login>
         </LeftUserPart>
       </UserPart>
-      <StatisticsTitle>About you</StatisticsTitle>
       <StatisticsPart>
-        <Stat></Stat>
-        <Text>oui</Text>
-        <Text>oui</Text>
-        <Text>oui</Text>
+        <Stat>
+          <StatName>Followers</StatName>
+          <StatValue>{user.followers}</StatValue>
+        </Stat>
+        <Stat>
+          <StatName>Location</StatName>
+          <StatValue>{user.location}</StatValue>
+        </Stat>
+        <Stat>
+          <StatName>Repositories</StatName>
+          <StatValue>
+            {user.public_repos} (+{user.total_private_repos + user.owned_private_repos})
+          </StatValue>
+        </Stat>
       </StatisticsPart>
+      <Stat style={{ marginTop: 10 }}>
+        <StatName>Bio</StatName>
+        <StatValue>{user.bio}</StatValue>
+      </Stat>
     </ProfileCard>
   )
 }

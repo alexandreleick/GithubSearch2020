@@ -11,4 +11,8 @@ export type AuthenticatedUser = {
   location: string
   email: string
   bio: string
+  followers: number
+  public_repos: number
+  total_private_repos: number
+  owned_private_repos: number
 }
