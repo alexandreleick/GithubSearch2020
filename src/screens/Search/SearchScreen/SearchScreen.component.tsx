@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Input, Layout, Text, Button, ListItem, Avatar } from '@ui-kitten/components'
 import { components } from '@eva-design/eva/mapping'
-import { View } from 'react-native'
+import { View, Image } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import useUserSearch from '../../../hooks/user/useUserSearch.hook'
 import useRepoSearch from '../../../hooks/repositories/useRepoSearch.hook'
@@ -29,7 +29,9 @@ const SearchScreen: React.FC = () => {
   }
 
   const Favorites = () => <Button size="tiny">FOLLOW</Button>
-  const ItemImage = () => <Avatar source={require('../../../assets/icon/icon.png')} />
+  const ItemImage = (url: string) => {
+    return <Image source={{ uri: url }} style={{ width: 40, height: 40 }} />
+  }
 
   const renderElement = () => {
     if (data !== undefined)
@@ -38,7 +40,7 @@ const SearchScreen: React.FC = () => {
           key={index}
           title={searchItem.login}
           description="Test"
-          accessoryLeft={ItemImage}
+          accessoryLeft={() => ItemImage(searchItem.avatar_url)}
           accessoryRight={Favorites}
         />
       ))
