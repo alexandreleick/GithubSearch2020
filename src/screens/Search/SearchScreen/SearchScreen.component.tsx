@@ -30,7 +30,7 @@ const SearchScreen: React.FC = () => {
 
   const Favorites = () => <Button size="tiny">FOLLOW</Button>
   const ItemImage = (url: string) => {
-    return <Image source={{ uri: url }} style={{ width: 40, height: 40 }} />
+    return <Avatar source={{ uri: url }} style={{ width: 40, height: 40 }} />
   }
 
   const renderElement = () => {
