@@ -15,7 +15,7 @@ import { WebViewNavigation } from 'react-native-webview'
 import useLogin from '../../../../hooks/user/useLogin.hook'
 
 const UnAuthenticated: React.FC = () => {
-  const { dispatchLogin, loggedIn } = useLogin()
+  const { dispatchLogin } = useLogin()
   const { isVisible: webviewIsVisible, toggleBottomSheet: webviewToggle } = useBottomSheet()
 
   const GithubIcon = (props: IconProps) => <Icon {...props} name="github" />

@@ -25,8 +25,23 @@ export const Toast = () => {
     }
   }, [toast])
 
+  const backgroundColor: string = (() => {
+    switch (toast.type) {
+      case 'danger':
+        return 'red'
+      case 'success':
+        return 'green'
+      case 'info':
+        return 'primary'
+      case 'warning':
+        return 'orange'
+    }
+  })()
+
   return (
-    <Animated.View style={[styles.toast, { transform: [{ translateY: translateYRef.current }] }]}>
+    <Animated.View
+      style={[{ ...styles.toast, backgroundColor }, { transform: [{ translateY: translateYRef.current }] }]}
+    >
       <TouchableOpacity onPress={hide} style={styles.content}>
         <Text style={styles.toastMessage}> {toast.message}</Text>
       </TouchableOpacity>

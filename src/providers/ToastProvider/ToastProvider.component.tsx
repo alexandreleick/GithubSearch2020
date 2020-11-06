@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect, useRef, useCallback, ReactNo
 
 type ToastParams = {
   message: string
-  type: 'danger' | 'info' | 'warning' | null
+  type: 'danger' | 'info' | 'warning' | 'success'
   visible: boolean
 }
 
@@ -22,23 +22,23 @@ export const ToastProvider: React.FC<ToastProviderProps> = (props: ToastProvider
   const { children } = props
   const initialToast: ToastParams = {
     message: '',
-    type: null,
+    type: 'info',
     visible: false,
   }
   const [toast, setToast] = useState<ToastParams>(initialToast)
   const timeout = useRef()
 
-  const show = useCallback((args: ToastParams) => {
+  const show: (params: ToastParams) => void = useCallback((args: ToastParams) => {
     setToast({ ...initialToast, ...args, visible: true })
   }, [])
 
-  const hide = useCallback(() => {
+  const hide: () => void = useCallback(() => {
     setToast({ ...toast, visible: false })
   }, [toast])
 
   useEffect(() => {
     if (toast.visible) {
-      timeout.current = setTimeout(hide, 1500)
+      timeout.current = setTimeout(hide, 2500)
       return () => {
         if (timeout.current) {
           clearTimeout(timeout.current)

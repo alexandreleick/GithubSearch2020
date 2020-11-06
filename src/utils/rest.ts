@@ -8,9 +8,20 @@ export const CALLBACK_URL = 'https://epitech-react-native.app/callback'
 export const APP_CLIENT_ID = 'Iv1.166f1878b8caf064'
 export const APP_CLIENT_SECRET = '634701d0461ceafca1ea7682b73212b4dd6a648b'
 
-export const axios = Axios.create({
-  baseURL: BASE_URL,
-})
+export const axiosConfig = { baseURL: BASE_URL }
+export const axios = Axios.create(axiosConfig)
+
+// Intercept request and add header
+axios.interceptors.request.use(
+  async (config: AxiosRequestConfig) => {
+    const authInfos = await loadAuthInfos()
+    config.headers.Authorization = 'Bearer ' + authInfos?.token
+    return config
+  },
+  (error) => {
+    return Promise.reject(error)
+  },
+)
 
 export interface RestParams {
   url: string
