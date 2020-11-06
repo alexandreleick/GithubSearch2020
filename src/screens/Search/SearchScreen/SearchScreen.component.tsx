@@ -14,12 +14,6 @@ const SearchScreen: React.FC = () => {
 
   const { data, loading, error, dispatchRequest } = useUserSearch()
   const { data: datas, dispatchRepo } = useRepoSearch()
-  /*useEffect(() => {
-    if (data !== undefined && data.items.length) {
-      setLogin(data.items[0].login)
-      console.log(data)
-    }
-  })*/
   const onChangeSearch = (query: string) => setValue(query)
 
   const onSubmit = () => {
@@ -64,11 +58,7 @@ const SearchScreen: React.FC = () => {
   const renderTab = () => {
     if (datas !== undefined && data !== undefined)
       return (
-        <TabView
-          selectedIndex={selectedIndex}
-          shouldLoadComponent={shouldLoadComponent}
-          onSelect={(index) => setSelectedIndex(index)}
-        >
+        <TabView selectedIndex={selectedIndex} onSelect={(index) => setSelectedIndex(index)}>
           <Tab title={'Repositories: ' + datas.items.length}>
             <View>{renderRepoElement()}</View>
           </Tab>
@@ -81,8 +71,6 @@ const SearchScreen: React.FC = () => {
   }
 
   const [selectedIndex, setSelectedIndex] = useState<number>(0)
-
-  const shouldLoadComponent = (index: number) => index === selectedIndex
 
   return (
     <>
