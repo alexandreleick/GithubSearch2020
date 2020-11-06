@@ -24,7 +24,6 @@ const SearchScreen: React.FC = () => {
   const onSubmit = () => {
     dispatchRequest(value)
     dispatchRepo(value)
-    console.log(datas)
     //navigate('Result')
   }
 
@@ -47,6 +46,20 @@ const SearchScreen: React.FC = () => {
     return null
   }
 
+  const renderRepoElement = () => {
+    if (data !== undefined)
+      return datas.items.map((searchItem: any, index: number) => (
+        <ListItem
+          key={index}
+          title={searchItem.name}
+          description={searchItem.description}
+          accessoryLeft={() => ItemImage(searchItem.owner.avatar_url)}
+          accessoryRight={Favorites}
+        />
+      ))
+    return null
+  }
+
   return (
     <>
       <View style={{ flexDirection: 'row' }}>
@@ -56,6 +69,7 @@ const SearchScreen: React.FC = () => {
           onChangeText={onChangeSearch}
           style={{ flexGrow: 1 }}
         />
+
         <Button
           style={{
             position: 'absolute',
@@ -70,7 +84,7 @@ const SearchScreen: React.FC = () => {
           Search
         </Button>
       </View>
-      <View>{renderElement()}</View>
+      <View>{renderRepoElement()}</View>
     </>
   )
 }
