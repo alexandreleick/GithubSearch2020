@@ -1,12 +1,11 @@
 import useAxios from 'axios-hooks'
-import { AuthenticatedUser } from '../../types/user/authenticated-user.type'
-import { useSelector } from 'react-redux'
-import { selectUser } from '../../redux/user/selectors'
-import { Follower } from '../../types/user/follower-following.type'
+import { User } from '../../types/user/user.type'
+import { FollowerFollowing } from '../../types/user/follower-following.type'
 
-const useFindProfileFollowers: Function = () => {
-  const user: AuthenticatedUser = useSelector(selectUser)
-  const [{ data, loading, error }] = useAxios<Follower[]>({ url: user.followers_url })
+type UseFindProfileFollowersType = (user: User) => { data: FollowerFollowing[]; loading: boolean; error: any }
+
+const useFindProfileFollowers: UseFindProfileFollowersType = (user: User) => {
+  const [{ data, loading, error }] = useAxios<FollowerFollowing[]>({ url: user.followers_url })
 
   return {
     data,

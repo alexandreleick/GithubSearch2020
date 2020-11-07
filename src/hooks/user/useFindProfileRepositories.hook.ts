@@ -1,11 +1,10 @@
 import useAxios from 'axios-hooks'
-import { AuthenticatedUser } from '../../types/user/authenticated-user.type'
-import { useSelector } from 'react-redux'
-import { selectUser } from '../../redux/user/selectors'
+import { User } from '../../types/user/user.type'
 import { Repository } from '../../types/repositories/repository.type'
 
-const useFindProfileRepositories: Function = () => {
-  const user: AuthenticatedUser = useSelector(selectUser)
+type UseFindProfileRepositoriesType = (user: User) => { data: Repository[]; loading: boolean; error: any }
+
+const useFindProfileRepositories: UseFindProfileRepositoriesType = (user: User) => {
   const [{ data, loading, error }] = useAxios<Repository[]>({ url: user.repos_url + '?type=all' })
 
   return {

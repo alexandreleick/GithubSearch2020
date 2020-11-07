@@ -1,6 +1,13 @@
 import { useState } from 'react'
 
-const useBottomSheet: Function = () => {
+type UseBottomSheetType = () => {
+  isVisible: boolean
+  toggleBottomSheet: () => void
+  bottomSheetParams: any
+  setBottomSheetParams: (param: any) => void
+}
+
+const useBottomSheet: UseBottomSheetType = () => {
   const [isVisible, setVisible] = useState(false)
   const [bottomSheetParams, setBottomSheetParams] = useState<any>(null)
 

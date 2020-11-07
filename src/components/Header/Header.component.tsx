@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Icon, IconProps, TopNavigation, TopNavigationAction } from '@ui-kitten/components'
 import { userReducer } from '../../redux/user/reducer'
 import { selectIsAuthenticated, selectUser } from '../../redux/user/selectors'
-import { AuthenticatedUser } from '../../types/user/authenticated-user.type'
+import { User } from '../../types/user/user.type'
 import { StackHeaderProps } from '@react-navigation/stack'
 import { View } from 'react-native'
 import { ToastContext } from '../../providers/ToastProvider/ToastProvider.component'
@@ -17,7 +17,7 @@ interface HeaderCustomProps extends StackHeaderProps {
 const Header: React.FC<HeaderCustomProps> = (props: HeaderCustomProps) => {
   const { insets, scene, title } = props
   const isAuthenticated: boolean = useSelector(selectIsAuthenticated)
-  const user: AuthenticatedUser = useSelector(selectUser)
+  const user: User = useSelector(selectUser)
   const dispatch = useDispatch()
   const { show } = useContext(ToastContext)
 

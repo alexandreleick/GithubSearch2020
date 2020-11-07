@@ -1,12 +1,18 @@
 import React, { useState } from 'react'
-import { StyleSheet, useWindowDimensions } from 'react-native'
+import { useWindowDimensions } from 'react-native'
 import { Icon, IconProps, Tab, TabView } from '@ui-kitten/components'
 import { ProfileDetailsView } from './ProfileDetails.styled'
 import ProfileRepositories from '../shared/ProfileRepositories/ProfileRepositories.component'
 import ProfileFollowers from '../shared/ProfileFollowers/ProfileFollowers.component'
 import ProfileFollowing from '../shared/ProfileFollowing/ProfileFollowing.component'
+import { User } from '../../../../types/user/user.type'
 
-const ProfileDetails: React.FC = () => {
+type ProfileDetailsProps = {
+  user: User
+}
+
+const ProfileDetails: React.FC<ProfileDetailsProps> = (props: ProfileDetailsProps) => {
+  const { user } = props
   const [selectedIndex, setSelectedIndex] = useState<number>(0)
   const { height } = useWindowDimensions()
 
@@ -22,25 +28,17 @@ const ProfileDetails: React.FC = () => {
         style={{ height: height / 2 + 100 }}
       >
         <Tab title="Repositories" icon={RepositoriesIcon}>
-          <ProfileRepositories />
+          <ProfileRepositories user={user} />
         </Tab>
         <Tab title="Followers" icon={FollowersIcon}>
-          <ProfileFollowers />
+          <ProfileFollowers user={user} />
         </Tab>
         <Tab title="Following" icon={FollowingIcon}>
-          <ProfileFollowing />
+          <ProfileFollowing user={user} />
         </Tab>
       </TabView>
     </ProfileDetailsView>
   )
 }
-
-const styles = StyleSheet.create({
-  tabContainer: {
-    height: 64,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-})
 
 export default ProfileDetails

@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction, Slice } from '@reduxjs/toolkit'
-import { AuthenticatedUser } from '../../types/user/authenticated-user.type'
+import { User } from '../../types/user/user.type'
 
 export type UserState = {
   loading: 0 | 1 | -1
-  user?: AuthenticatedUser
+  user?: User
   accessToken: string | undefined
 }
 
@@ -17,7 +17,7 @@ export const userReducer: Slice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setUser: (state: UserState, { payload: user }: PayloadAction<AuthenticatedUser>) => ({ ...state, user }),
+    setUser: (state: UserState, { payload: user }: PayloadAction<User>) => ({ ...state, user }),
     setToken: (state: UserState, { payload: accessToken }: PayloadAction<string>) => ({ ...state, accessToken }),
     logout: (state: UserState) => ({ ...state, accessToken: undefined, user: undefined }),
   },

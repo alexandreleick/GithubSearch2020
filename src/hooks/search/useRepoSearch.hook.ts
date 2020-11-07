@@ -1,9 +1,17 @@
 import useAxios from 'axios-hooks'
 import { GithubResponse } from '../../types/github-response.type'
-import { UserSearchResult } from '../../types/user/user-search-result.type'
+import { SearchRepository } from '../../types/search/search-repository.type'
+import { AxiosPromise } from 'axios'
 
-const UseRepoSearch: Function = () => {
-  const [{ data, loading, error }, execute] = useAxios<GithubResponse<UserSearchResult[]>>({}, { manual: true })
+type UseRepoSearchType = () => {
+  data: GithubResponse<SearchRepository[]>
+  loading: boolean
+  error: any
+  dispatchRepo: (repoName: string) => AxiosPromise<GithubResponse<SearchRepository[]>>
+}
+
+const useRepoSearch: UseRepoSearchType = () => {
+  const [{ data, loading, error }, execute] = useAxios<GithubResponse<SearchRepository[]>>({}, { manual: true })
 
   const dispatchRepo = (repoName: string) => execute({ url: `/search/repositories?q=${repoName}` })
 
@@ -15,4 +23,4 @@ const UseRepoSearch: Function = () => {
   }
 }
 
-export default UseRepoSearch
+export default useRepoSearch

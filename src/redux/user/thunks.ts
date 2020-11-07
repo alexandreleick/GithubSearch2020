@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { clearAuthInfos } from '../../utils/auth'
 import { RestParams, restWithToken } from '../../utils/rest'
-import { AuthenticatedUser } from '../../types/user/authenticated-user.type'
+import { User } from '../../types/user/user.type'
 
 export const getMe: any = createAsyncThunk('@@user/GET_ME', async () => {
   try {
@@ -10,7 +10,7 @@ export const getMe: any = createAsyncThunk('@@user/GET_ME', async () => {
     }
     const res = await restWithToken(params)
     if (res.status === 200) {
-      const user: AuthenticatedUser = await res.data
+      const user: User = await res.data
       return user
     }
   } catch (error) {

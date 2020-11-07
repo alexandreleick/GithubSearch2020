@@ -1,4 +1,4 @@
-export type FollowerFollowing = {
+export type SearchUser = {
   login: string
   id: number
   node_id: string

@@ -10,13 +10,15 @@ import {
   UserName,
   UserPart,
 } from './ProfileHeader.styled'
-import { useSelector } from 'react-redux'
-import { selectUser } from '../../../../redux/user/selectors'
-import { AuthenticatedUser } from '../../../../types/user/authenticated-user.type'
+import { User } from '../../../../types/user/user.type'
 import { Avatar } from '@ui-kitten/components'
 
-const ProfileHeader: React.FC = () => {
-  const user: AuthenticatedUser = useSelector(selectUser)
+type ProfileHeaderProps = {
+  user: User
+}
+
+const ProfileHeader: React.FC<ProfileHeaderProps> = (props: ProfileHeaderProps) => {
+  const { user } = props
 
   return (
     <ProfileCard>
@@ -38,9 +40,7 @@ const ProfileHeader: React.FC = () => {
         </Stat>
         <Stat>
           <StatName>Repositories</StatName>
-          <StatValue>
-            {user.public_repos} (+{user.total_private_repos + user.owned_private_repos})
-          </StatValue>
+          <StatValue>{user.public_repos}</StatValue>
         </Stat>
       </StatisticsPart>
       <Stat style={{ marginTop: 10 }}>

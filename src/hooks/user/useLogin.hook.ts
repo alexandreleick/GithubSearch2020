@@ -4,8 +4,7 @@ import { saveAuthInfos } from '../../utils/auth'
 import { useContext, useState } from 'react'
 import useFindProfileUser from './useFindProfileUser.hook'
 import { ToastContext } from '../../providers/ToastProvider/ToastProvider.component'
-import { AuthenticatedUser } from '../../types/user/authenticated-user.type'
-import { useNavigation } from '@react-navigation/native'
+import { User } from '../../types/user/user.type'
 
 export type LoginData = {
   access_token: string
@@ -19,13 +18,12 @@ const useLogin: Function = () => {
   const dispatch = useDispatch()
   const { dispatchRequest } = useFindProfileUser()
   const { show } = useContext(ToastContext)
-  const { navigate } = useNavigation()
 
   // TODO: /me to get user info
   const dispatchLogin: Function = (loginData: LoginData) => {
     Promise.all([dispatchRequest(), saveAuthInfos({ token: loginData.access_token })])
       .then((result) => {
-        const user: AuthenticatedUser = result[0].data
+        const user: User = result[0].data
         setLoggedIn(true)
         show({ message: 'Happy to see you again, ' + user.login + '!', type: 'success' })
         dispatch(userReducer.actions.setUser(user))

@@ -1,23 +1,29 @@
 import React, { useEffect, useState } from 'react'
 import { Spinner } from '@ui-kitten/components'
 import { FlatList } from 'react-native'
-import { Follower } from '../../../../../types/user/follower-following.type'
+import { FollowerFollowing } from '../../../../../types/user/follower-following.type'
 import { FollowingAvatar, FollowingCard, ProfileFollowingTab } from './ProfileFollowing.styled'
 import useFindProfileFollowing from '../../../../../hooks/user/useFindProfileFollowing.hook'
+import { User } from '../../../../../types/user/user.type'
 
 type DataSourceProps = {
   id: number
-  follower: Follower
+  follower: FollowerFollowing
 }
 
-const ProfileFollowing: React.FC = () => {
-  const { data, loading, error } = useFindProfileFollowing()
+type ProfileFollowingProps = {
+  user: User
+}
+
+const ProfileFollowing: React.FC<ProfileFollowingProps> = (props: ProfileFollowingProps) => {
+  const { user } = props
+  const { data, loading, error } = useFindProfileFollowing(user)
   const [dataSource, setDataSource] = useState<DataSourceProps[]>([])
 
   useEffect(() => {
     if (!data) return
     setDataSource(
-      data.map((user: Follower, index: number) => {
+      data.map((user: FollowerFollowing, index: number) => {
         return {
           id: index,
           follower: user,

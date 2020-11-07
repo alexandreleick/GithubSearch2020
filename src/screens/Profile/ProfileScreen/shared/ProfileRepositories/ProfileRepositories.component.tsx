@@ -16,9 +16,15 @@ import {
 import * as languageColor from '../../../../../utils/language-colors.json'
 import Badge from '../../../../../components/Badge/Badge.component'
 import { GithubLanguagesColor } from '../../../../../types/github-languages-color.type'
+import { User } from '../../../../../types/user/user.type'
 
-const ProfileRepositories: React.FC = () => {
-  const { data, loading, error } = useFindProfileRepositories()
+type ProfileRepositoriesProps = {
+  user: User
+}
+
+const ProfileRepositories: React.FC<ProfileRepositoriesProps> = (props: ProfileRepositoriesProps) => {
+  const { user } = props
+  const { data, loading, error } = useFindProfileRepositories(user)
 
   // Get color of the github language
   const getLanguageColor = (language: string) => {

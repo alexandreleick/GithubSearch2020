@@ -1,9 +1,16 @@
 import useAxios from 'axios-hooks'
-import { GithubResponse } from '../../types/github-response.type'
-import { UserSearchResult } from '../../types/user/user-search-result.type'
+import { User } from '../../types/user/user.type'
+import { AxiosPromise } from 'axios'
 
-const useFindProfileUser: Function = () => {
-  const [{ data, loading, error }, execute] = useAxios<GithubResponse<UserSearchResult[]>>({}, { manual: true })
+type UseFindProfileUserType = () => {
+  data: User
+  loading: boolean
+  error: any
+  dispatchRequest: () => AxiosPromise<User>
+}
+
+const useFindProfileUser: UseFindProfileUserType = () => {
+  const [{ data, loading, error }, execute] = useAxios<User>({}, { manual: true })
 
   // Execute the request with the url and given parameter
   const dispatchRequest = () => execute({ url: `/user` })
