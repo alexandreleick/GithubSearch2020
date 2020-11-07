@@ -7,20 +7,20 @@ type UseUserSearchType = () => {
   data: GithubResponse<SearchUser[]>
   loading: boolean
   error: any
-  dispatchRequest: (username: string) => AxiosPromise<GithubResponse<SearchUser[]>>
+  dispatchUserSearch: (username: string) => AxiosPromise<GithubResponse<SearchUser[]>>
 }
 
 const useUserSearch: UseUserSearchType = () => {
   const [{ data, loading, error }, execute] = useAxios<GithubResponse<SearchUser[]>>({}, { manual: true })
 
   // Execute the request with the url and given parameter
-  const dispatchRequest = (username: string) => execute({ url: `/search/users?q=${username}` })
+  const dispatchUserSearch = (username: string) => execute({ url: `/search/users?q=${username}` })
 
   return {
     data,
     loading,
     error,
-    dispatchRequest,
+    dispatchUserSearch,
   }
 }
 

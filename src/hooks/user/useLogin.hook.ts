@@ -16,12 +16,12 @@ export type LoginData = {
 const useLogin: Function = () => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false)
   const dispatch = useDispatch()
-  const { dispatchRequest } = useFindProfileUser()
+  const { dispatchFindProfile } = useFindProfileUser()
   const { show } = useContext(ToastContext)
 
   // TODO: /me to get user info
   const dispatchLogin: Function = (loginData: LoginData) => {
-    Promise.all([dispatchRequest(), saveAuthInfos({ token: loginData.access_token })])
+    Promise.all([dispatchFindProfile(), saveAuthInfos({ token: loginData.access_token })])
       .then((result) => {
         const user: User = result[0].data
         setLoggedIn(true)

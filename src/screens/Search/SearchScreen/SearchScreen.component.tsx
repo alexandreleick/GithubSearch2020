@@ -10,13 +10,13 @@ const SearchScreen: React.FC = () => {
   const { navigate } = useNavigation()
   const [login, setLogin] = useState('')
 
-  const { data, loading, error, dispatchRequest } = useUserSearch()
-  const { data: datas, dispatchRepo } = useRepoSearch()
+  const { data, loading, error, dispatchUserSearch } = useUserSearch()
+  const { data: datas, dispatchRepoSearch } = useRepoSearch()
   const onChangeSearch = (query: string) => setValue(query)
 
   const onSubmit = () => {
-    dispatchRequest(value)
-    dispatchRepo(value)
+    dispatchUserSearch(value)
+    dispatchRepoSearch(value)
     //navigate('Result')
   }
 
