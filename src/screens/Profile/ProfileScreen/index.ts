@@ -1,3 +1,3 @@
-import ProfileScreen from './ProfileScreen.component'
+import AuthenticatedProfileScreen from './AuthenticatedProfileScreen.component'
 
-export default ProfileScreen
+export default AuthenticatedProfileScreen

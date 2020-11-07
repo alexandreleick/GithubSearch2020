@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { useWindowDimensions } from 'react-native'
 import { Icon, IconProps, Tab, TabView } from '@ui-kitten/components'
 import { ProfileDetailsView } from './ProfileDetails.styled'
-import ProfileRepositories from '../shared/ProfileRepositories/ProfileRepositories.component'
-import ProfileFollowers from '../shared/ProfileFollowers/ProfileFollowers.component'
-import ProfileFollowing from '../shared/ProfileFollowing/ProfileFollowing.component'
-import { User } from '../../../../types/user/user.type'
+import ProfileRepositories from '../ProfileRepositories/ProfileRepositories.component'
+import ProfileFollowers from '../ProfileFollowers/ProfileFollowers.component'
+import ProfileFollowing from '../ProfileFollowing/ProfileFollowing.component'
+import { User } from '../../../types/user/user.type'
 
 type ProfileDetailsProps = {
   user: User

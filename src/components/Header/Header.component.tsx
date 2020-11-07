@@ -36,7 +36,13 @@ const Header: React.FC<HeaderCustomProps> = (props: HeaderCustomProps) => {
       <TopNavigation
         alignment="center"
         title={title || scene.route.name}
-        subtitle={isAuthenticated ? '@' + user.login : ''}
+        subtitle={
+          scene.route.params && scene.route.params.title
+            ? scene.route.params.title
+            : isAuthenticated
+            ? '@' + user.login
+            : ''
+        }
         accessoryRight={LogoutAction}
       />
     </View>

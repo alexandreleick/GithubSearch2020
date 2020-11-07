@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Spinner } from '@ui-kitten/components'
 import { FlatList } from 'react-native'
-import { FollowerFollowing } from '../../../../../types/user/follower-following.type'
+import { FollowerFollowing } from '../../../types/user/follower-following.type'
 import { FollowingAvatar, FollowingCard, ProfileFollowingTab } from './ProfileFollowing.styled'
-import useFindProfileFollowing from '../../../../../hooks/user/useFindProfileFollowing.hook'
-import { User } from '../../../../../types/user/user.type'
+import useFindProfileFollowing from '../../../hooks/user/useFindProfileFollowing.hook'
+import { User } from '../../../types/user/user.type'
 
 type DataSourceProps = {
   id: number

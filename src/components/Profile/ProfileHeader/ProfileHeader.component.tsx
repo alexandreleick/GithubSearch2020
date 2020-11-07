@@ -10,7 +10,7 @@ import {
   UserName,
   UserPart,
 } from './ProfileHeader.styled'
-import { User } from '../../../../types/user/user.type'
+import { User } from '../../../types/user/user.type'
 import { Avatar } from '@ui-kitten/components'
 
 type ProfileHeaderProps = {

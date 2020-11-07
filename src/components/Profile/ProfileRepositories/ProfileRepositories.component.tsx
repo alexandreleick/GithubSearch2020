@@ -1,6 +1,6 @@
 import React from 'react'
-import useFindProfileRepositories from '../../../../../hooks/user/useFindProfileRepositories.hook'
-import { Repository } from '../../../../../types/repositories/repository.type'
+import useFindProfileRepositories from '../../../hooks/user/useFindProfileRepositories.hook'
+import { Repository } from '../../../types/repositories/repository.type'
 import { Icon, Spinner } from '@ui-kitten/components'
 import { textEmoji } from 'markdown-to-text-emoji'
 import {
@@ -13,10 +13,10 @@ import {
   RepositoryName,
   RepositoryNameContainer,
 } from './ProfileRepositories.styled'
-import * as languageColor from '../../../../../utils/language-colors.json'
-import Badge from '../../../../../components/Badge/Badge.component'
-import { GithubLanguagesColor } from '../../../../../types/github-languages-color.type'
-import { User } from '../../../../../types/user/user.type'
+import * as languageColor from '../../../utils/language-colors.json'
+import Badge from '../../Badge/Badge.component'
+import { GithubLanguagesColor } from '../../../types/github-languages-color.type'
+import { User } from '../../../types/user/user.type'
 
 type ProfileRepositoriesProps = {
   user: User
