@@ -3,6 +3,7 @@ import { createStackNavigator, StackHeaderProps } from '@react-navigation/stack'
 import SearchScreen from '../../screens/Search/SearchScreen'
 import Header from '../../components/Header/Header.component'
 import UserResultProfileScreen from '../../screens/Search/UserResultProfileScreen/UserResultProfileScreen.component'
+import ResultScreen from '../../screens/Result'
 
 const Stack = createStackNavigator()
 
@@ -13,6 +14,11 @@ const SearchStackNavigator: React.FC = () => {
         name="Search"
         options={{ header: (props: StackHeaderProps) => <Header {...props} title="Search Users / Repositories" /> }}
         component={SearchScreen}
+      />
+      <Stack.Screen
+        name="Result"
+        options={{ header: (props: StackHeaderProps) => <Header {...props} title="Result" /> }}
+        component={ResultScreen}
       />
       <Stack.Screen
         name="UserResultProfile"

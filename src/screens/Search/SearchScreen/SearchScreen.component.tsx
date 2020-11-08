@@ -31,7 +31,6 @@ const SearchScreen: React.FC = () => {
         <ListItem
           key={index}
           title={searchItem.login}
-          description="Test"
           accessoryLeft={() => ItemImage(searchItem.avatar_url)}
           accessoryRight={Favorites}
         />
@@ -48,6 +47,7 @@ const SearchScreen: React.FC = () => {
           description={searchItem.description}
           accessoryLeft={() => ItemImage(searchItem.owner.avatar_url)}
           accessoryRight={Favorites}
+          onPress={() => navigate('Result')}
         />
       ))
     return null
