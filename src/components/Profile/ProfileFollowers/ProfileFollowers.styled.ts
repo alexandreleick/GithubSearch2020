@@ -1,7 +1,7 @@
 import styled from 'styled-components/native'
 import { Avatar, Card } from '@ui-kitten/components'
 
-export const ProfileFollowersTab = styled.ScrollView`
+export const ProfileFollowersTab = styled.View`
   min-height: 200px;
   padding-top: 10px;
 `

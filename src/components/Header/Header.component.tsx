@@ -7,8 +7,10 @@ import { User } from '../../types/user/user.type'
 import { StackHeaderProps } from '@react-navigation/stack'
 import { View } from 'react-native'
 import { ToastContext } from '../../providers/ToastProvider/ToastProvider.component'
+import { useNavigation } from '@react-navigation/native'
 
 const LogoutIcon = (props: IconProps) => <Icon {...props} name="power-outline" />
+const BackIcon = (props: IconProps) => <Icon {...props} name="arrow-back" />
 
 interface HeaderCustomProps extends StackHeaderProps {
   title?: string
@@ -20,6 +22,7 @@ const Header: React.FC<HeaderCustomProps> = (props: HeaderCustomProps) => {
   const user: User = useSelector(selectUser)
   const dispatch = useDispatch()
   const { show } = useContext(ToastContext)
+  const { canGoBack, goBack } = useNavigation()
 
   const LogoutAction = () => (
     <TopNavigationAction
@@ -30,6 +33,14 @@ const Header: React.FC<HeaderCustomProps> = (props: HeaderCustomProps) => {
       }}
     />
   )
+
+  const GoBackAction = () => {
+    if (canGoBack()) {
+      return <TopNavigationAction icon={BackIcon} onPress={goBack} />
+    }
+
+    return <></>
+  }
 
   return (
     <View style={{ backgroundColor: 'white', paddingTop: insets.top }}>
@@ -43,6 +54,7 @@ const Header: React.FC<HeaderCustomProps> = (props: HeaderCustomProps) => {
             ? '@' + user.login
             : ''
         }
+        accessoryLeft={GoBackAction}
         accessoryRight={LogoutAction}
       />
     </View>

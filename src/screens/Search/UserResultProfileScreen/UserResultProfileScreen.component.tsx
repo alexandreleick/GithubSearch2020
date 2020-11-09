@@ -5,7 +5,7 @@ import ProfileRenderer from '../../../components/Profile/ProfileRenderer.compone
 const UserResultProfileScreen: React.FC = () => {
   const { params } = useRoute()
 
-  return <ProfileRenderer user={params['user']} />
+  return <ProfileRenderer user={null} fetchUserUrl={params['profileUrl']} />
 }
 
 export default UserResultProfileScreen

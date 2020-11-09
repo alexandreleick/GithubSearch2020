@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Spinner } from '@ui-kitten/components'
-import { FlatList } from 'react-native'
+import { FlatList, useWindowDimensions } from 'react-native'
 import { FollowerFollowing } from '../../../types/user/follower-following.type'
 import { FollowingAvatar, FollowingCard, ProfileFollowingTab } from './ProfileFollowing.styled'
 import useFindProfileFollowing from '../../../hooks/user/useFindProfileFollowing.hook'
 import { User } from '../../../types/user/user.type'
+import { useNavigation } from '@react-navigation/native'
 
 type DataSourceProps = {
   id: number
@@ -19,6 +20,8 @@ const ProfileFollowing: React.FC<ProfileFollowingProps> = (props: ProfileFollowi
   const { user } = props
   const { data, loading, error } = useFindProfileFollowing(user)
   const [dataSource, setDataSource] = useState<DataSourceProps[]>([])
+  const { height } = useWindowDimensions()
+  const { navigate } = useNavigation()
 
   useEffect(() => {
     if (!data) return
@@ -38,14 +41,19 @@ const ProfileFollowing: React.FC<ProfileFollowingProps> = (props: ProfileFollowi
         <Spinner status="primary" />
       ) : (
         <FlatList
+          style={{ height: height / 2 - 70, marginBottom: 80 }}
           data={dataSource}
           renderItem={({ item }) => (
-            <FollowingCard>
+            <FollowingCard
+              onPress={() =>
+                navigate('UserResultProfile', { profileUrl: item.follower.url, title: '@' + item.follower.login })
+              }
+            >
               <FollowingAvatar source={{ uri: item.follower.avatar_url, cache: 'force-cache' }} />
             </FollowingCard>
           )}
           numColumns={4}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item.id.toString()}
         />
       )}
     </ProfileFollowingTab>

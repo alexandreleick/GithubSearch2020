@@ -16,7 +16,7 @@ const SearchStackNavigator: React.FC = () => {
         component={SearchScreen}
       />
       <Stack.Screen
-        name="Result"
+        name="RepoResult"
         options={{ header: (props: StackHeaderProps) => <Header {...props} title="Result" /> }}
         component={ResultScreen}
       />

@@ -4,11 +4,13 @@ import { ScrollView, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import useUserSearch from '../../../hooks/search/useUserSearch.hook'
 import useRepoSearch from '../../../hooks/search/useRepoSearch.hook'
+import { SearchUser } from '../../../types/search/search-user.type'
+import { SearchRepository } from '../../../types/search/search-repository.type'
 
 const SearchScreen: React.FC = () => {
   const [value, setValue] = useState<string>('')
   const { navigate } = useNavigation()
-  const [login, setLogin] = useState('')
+  const [selectedIndex, setSelectedIndex] = useState<number>(0)
 
   const { data, loading, error, dispatchUserSearch } = useUserSearch()
   const { data: datas, dispatchRepoSearch } = useRepoSearch()
@@ -27,12 +29,13 @@ const SearchScreen: React.FC = () => {
 
   const renderElement = () => {
     if (data !== undefined)
-      return data.items.map((searchItem: any, index: number) => (
+      return data.items.map((user: SearchUser, index: number) => (
         <ListItem
           key={index}
-          title={searchItem.login}
-          accessoryLeft={() => ItemImage(searchItem.avatar_url)}
+          title={user.login}
+          accessoryLeft={() => ItemImage(user.avatar_url)}
           accessoryRight={Favorites}
+          onPress={() => navigate('UserResultProfile', { profileUrl: user.url, title: '@' + user.login })}
         />
       ))
     return null
@@ -40,14 +43,14 @@ const SearchScreen: React.FC = () => {
 
   const renderRepoElement = () => {
     if (datas !== undefined)
-      return datas.items.map((searchItem: any, index: number) => (
+      return datas.items.map((repo: SearchRepository, index: number) => (
         <ListItem
           key={index}
-          title={searchItem.name}
-          description={searchItem.description}
-          accessoryLeft={() => ItemImage(searchItem.owner.avatar_url)}
+          title={repo.name}
+          description={repo.description}
+          accessoryLeft={() => ItemImage(repo.owner.avatar_url)}
           accessoryRight={Favorites}
-          onPress={() => navigate('Result')}
+          onPress={() => navigate('RepoResult')}
         />
       ))
     return null
@@ -68,36 +71,32 @@ const SearchScreen: React.FC = () => {
     return null
   }
 
-  const [selectedIndex, setSelectedIndex] = useState<number>(0)
-
   return (
-    <>
-      <ScrollView>
-        <View style={{ flexDirection: 'row' }}>
-          <Input
-            placeholder="Search for users / repositories"
-            value={value}
-            onChangeText={onChangeSearch}
-            style={{ flexGrow: 1 }}
-          />
+    <ScrollView>
+      <View style={{ flexDirection: 'row' }}>
+        <Input
+          placeholder="Search for users / repositories"
+          value={value}
+          onChangeText={onChangeSearch}
+          style={{ flexGrow: 1 }}
+        />
 
-          <Button
-            style={{
-              position: 'absolute',
-              right: 0,
-              top: 0,
-              height: 9,
-              backgroundColor: 'black',
-              borderColor: 'black',
-            }}
-            onPress={onSubmit}
-          >
-            Search
-          </Button>
-        </View>
-        <View>{renderTab()}</View>
-      </ScrollView>
-    </>
+        <Button
+          style={{
+            position: 'absolute',
+            right: 0,
+            top: 0,
+            height: 9,
+            backgroundColor: 'black',
+            borderColor: 'black',
+          }}
+          onPress={onSubmit}
+        >
+          Search
+        </Button>
+      </View>
+      <View>{renderTab()}</View>
+    </ScrollView>
   )
 }
 

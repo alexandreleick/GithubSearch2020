@@ -10,7 +10,7 @@ const { Navigator, Screen } = createBottomTabNavigator()
 
 const BottomNavigator: React.FC = () => {
   return (
-    <Navigator tabBar={(props) => <BottomNav {...props} />}>
+    <Navigator tabBar={(props) => <BottomNav {...props} />} backBehavior={'none'}>
       <Screen name="Favourites" component={FavouriteStackNavigator} />
       <Screen name="Search" component={SearchStackNavigator} />
       <Screen name="Profile" component={ProfileStackNavigator} />

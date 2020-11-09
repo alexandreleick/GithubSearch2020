@@ -21,12 +21,8 @@ const ProfileDetails: React.FC<ProfileDetailsProps> = (props: ProfileDetailsProp
   const FollowingIcon = (props: IconProps) => <Icon {...props} name="person-done-outline" />
 
   return (
-    <ProfileDetailsView style={{ borderTopColor: '#F4F4F4', borderTopWidth: 1 }}>
-      <TabView
-        selectedIndex={selectedIndex}
-        onSelect={(index) => setSelectedIndex(index)}
-        style={{ height: height / 2 + 100 }}
-      >
+    <ProfileDetailsView style={{ borderTopColor: '#F4F4F4', borderTopWidth: 1, height: height / 2 + 100 }}>
+      <TabView selectedIndex={selectedIndex} onSelect={(index) => setSelectedIndex(index)}>
         <Tab title="Repositories" icon={RepositoriesIcon}>
           <ProfileRepositories user={user} />
         </Tab>
