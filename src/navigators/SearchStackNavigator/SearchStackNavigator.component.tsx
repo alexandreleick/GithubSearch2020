@@ -17,6 +17,7 @@ const SearchStackNavigator: React.FC = () => {
       />
       <Stack.Screen
         name="RepoResult"
+        initialParams={{ repo: null, title: null }}
         options={{ header: (props: StackHeaderProps) => <Header {...props} title="Result" /> }}
         component={ResultScreen}
       />
