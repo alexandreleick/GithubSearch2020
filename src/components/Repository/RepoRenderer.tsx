@@ -4,6 +4,7 @@ import ProfileHeader from '../Profile/ProfileHeader/ProfileHeader.component'
 import ProfileDetails from '../Profile/ProfileDetails/ProfileDetails.component'
 import { Repository } from '../../types/repositories/repository.type'
 import useGetRepo from '../../hooks/repositories/useGetRepo.hook'
+import RepositoryDetails from './RepositoryDetails/RepositoryDetails.component'
 
 type RepoRendererProps = {
   repo?: Repository
@@ -37,8 +38,7 @@ const RepoRenderer: React.FC<RepoRendererProps> = (props: RepoRendererProps) => 
 
     return (
       <Layout level="2" style={{ flex: 1 }}>
-        <ProfileHeader user={user} />
-        <ProfileDetails user={user} />
+        <RepositoryDetails repo={repo} />
       </Layout>
     )
   })()

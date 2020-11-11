@@ -1,11 +1,16 @@
 import React from 'react'
 import { User } from '../../../types/user/user.type'
 import { Repository } from '../../../types/repositories/repository.type'
+import { Text } from 'react-native'
 
 type RepositoryDetailsProps = {
   repo: Repository
 }
 
-const RepositoryDetails: React.FC<RepositoryDetailsProps> = (props: RepositoryDetailsProps) => {}
+const RepositoryDetails: React.FC<RepositoryDetailsProps> = (props: RepositoryDetailsProps) => {
+  const { repo } = props
+
+  return <Text>{repo.name}</Text>
+}
 
 export default RepositoryDetails
