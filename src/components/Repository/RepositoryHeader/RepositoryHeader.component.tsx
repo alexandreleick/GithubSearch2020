@@ -1,7 +1,7 @@
 import { Repository } from '../../../types/repositories/repository.type'
 import React from 'react'
 import { Text } from 'react-native'
-import { RepositoryCard, RepoName, RepoPart, LeftRepoPart, StatDescription, StatValue, Stat, StatisticsPart } from './RepositoryHeader.styled'
+import { RepositoryCard, RepoName, RepoPart, LeftRepoPart, StatDescription, StatValue, Stat, StatisticsPart, CenterLogin } from './RepositoryHeader.styled'
 import { Avatar } from '@ui-kitten/components'
 
 type RepositoryHeaderProps = {
@@ -27,6 +27,10 @@ const RepositoryHeader: React.FC<RepositoryHeaderProps> = (props: RepositoryHead
                 <LeftRepoPart>
                     <RepoName>{repo.name}</RepoName>
                 </LeftRepoPart>
+                <Stat>
+                    <Avatar source={{ uri: repo.owner.avatar_url, cache: 'force-cache' }} />
+                    <Text>{repo.owner.login}</Text>
+                </Stat>
             </RepoPart>
             <StatisticsPart>
                 <Stat>
