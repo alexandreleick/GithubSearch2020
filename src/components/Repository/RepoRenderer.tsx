@@ -6,6 +6,7 @@ import { Repository } from '../../types/repositories/repository.type'
 import useGetRepo from '../../hooks/repositories/useGetRepo.hook'
 import RepositoryDetails from './RepositoryDetails/RepositoryDetails.component'
 import RepositoryHeader from './RepositoryHeader/RepositoryHeader.component'
+import { ScrollView } from 'react-native'
 
 type RepoRendererProps = {
   repo?: Repository
@@ -39,8 +40,10 @@ const RepoRenderer: React.FC<RepoRendererProps> = (props: RepoRendererProps) => 
 
     return (
       <Layout level="2" style={{ flex: 1 }}>
-        <RepositoryHeader repo={repo} />
-        <RepositoryDetails repo={repo} />
+        <ScrollView>
+          <RepositoryHeader repo={repo} />
+          <RepositoryDetails repo={repo} />
+        </ScrollView>
       </Layout>
     )
   })()
