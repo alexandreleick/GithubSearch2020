@@ -50,7 +50,7 @@ const SearchScreen: React.FC = () => {
           description={repo.description}
           accessoryLeft={() => ItemImage(repo.owner.avatar_url)}
           accessoryRight={Favorites}
-          onPress={() => navigate('RepoResult')}
+          onPress={() => navigate('RepoResult', { repoUrl: repo.url, title: repo.name })}
         />
       ))
     return null

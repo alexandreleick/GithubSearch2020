@@ -1,5 +1,6 @@
 import React from 'react'
 import { useRoute } from '@react-navigation/native'
+import RepoRenderer from '../../components/Repository/RepoRenderer'
 
 const ResultScreen: React.FC = () => {
   const { params } = useRoute()
