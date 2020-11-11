@@ -1,17 +1,21 @@
 import { Repository } from '../../../types/repositories/repository.type'
 import React from 'react'
 import { Text } from 'react-native'
-import { RepositoryCard, RepoName, RepoPart, LeftRepoPart, StatDescription, StatValue, Stat, StatisticsPart, CenterLogin } from './RepositoryHeader.styled'
+import { RepositoryCard, RepoName, RepoPart, LeftRepoPart, StatDescription, StatValue, Stat, StatisticsPart, FollowerCard } from './RepositoryHeader.styled'
 import { Avatar } from '@ui-kitten/components'
+import { useNavigation } from '@react-navigation/native'
+
 
 type RepositoryHeaderProps = {
   repo: Repository
 }
 
 const RepositoryHeader: React.FC<RepositoryHeaderProps> = (props: RepositoryHeaderProps) => {
-  const { repo } = props
+    const { repo } = props
+    const { navigate } = useNavigation()
 
-  const isPrivate = (is_private: boolean) => {
+
+    const isPrivate = (is_private: boolean) => {
     if (!is_private) return 'This repository is public'
     return 'This repository is private'
   }
@@ -28,8 +32,10 @@ const RepositoryHeader: React.FC<RepositoryHeaderProps> = (props: RepositoryHead
                     <RepoName>{repo.name}</RepoName>
                 </LeftRepoPart>
                 <Stat>
-                    <Avatar source={{ uri: repo.owner.avatar_url, cache: 'force-cache' }} />
-                    <Text>{repo.owner.login}</Text>
+                    <FollowerCard>
+                        <Avatar source={{ uri: repo.owner.avatar_url, cache: 'force-cache' }} />
+                        <Text>{repo.owner.login}</Text>
+                    </FollowerCard>
                 </Stat>
             </RepoPart>
             <StatisticsPart>
@@ -60,6 +66,12 @@ const RepositoryHeader: React.FC<RepositoryHeaderProps> = (props: RepositoryHead
                 <StatDescription>Description</StatDescription>
                 <StatValue>{repo.description}</StatValue>
             </Stat>
+            <StatisticsPart>
+                <Stat>
+                    <StatDescription>Languages</StatDescription>
+                    <StatValue>{repo.language}</StatValue>
+                </Stat>
+            </StatisticsPart>
         </RepositoryCard>
     )
 }

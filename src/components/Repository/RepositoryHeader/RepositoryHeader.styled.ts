@@ -49,4 +49,10 @@ export const StatDescription = styled.Text`
   font-weight: 500;
 `
 
+export const FollowerCard = styled(Card)`
+  margin-top: 5px;
+  margin-left: 11px;
+  border-radius: 10px;
+`
+
 export const StatValue = styled.Text``
