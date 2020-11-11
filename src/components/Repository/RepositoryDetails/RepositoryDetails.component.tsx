@@ -1,5 +1,4 @@
 import React from 'react'
-import { User } from '../../../types/user/user.type'
 import { Repository } from '../../../types/repositories/repository.type'
 import { Text } from 'react-native'
 
