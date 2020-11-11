@@ -35,12 +35,12 @@ const RepoRenderer: React.FC<RepoRendererProps> = (props: RepoRendererProps) => 
       )
     }
 
-    /*return (
+    return (
       <Layout level="2" style={{ flex: 1 }}>
         <ProfileHeader user={user} />
         <ProfileDetails user={user} />
       </Layout>
-    )*/
+    )
   })()
 }
 
