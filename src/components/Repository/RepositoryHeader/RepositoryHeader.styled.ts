@@ -13,7 +13,6 @@ export const RepoPart = styled.View`
 `
 
 export const LeftRepoPart = styled.View`
-  flex-direction: column;
   align-items: flex-end;
 `
 
@@ -55,4 +54,7 @@ export const FollowerCard = styled(Card)`
   border-radius: 10px;
 `
 
-export const StatValue = styled.Text``
+export const StatValue = styled.Text`
+    margin-left: 5px;
+    justify-content: flex-end;
+`

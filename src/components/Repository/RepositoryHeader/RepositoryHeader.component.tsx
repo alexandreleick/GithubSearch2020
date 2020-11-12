@@ -12,7 +12,7 @@ import {
   StatisticsPart,
   StatValue,
 } from './RepositoryHeader.styled'
-import { Avatar } from '@ui-kitten/components'
+import { Avatar, IconProps, Icon, Tab } from '@ui-kitten/components'
 import { useNavigation } from '@react-navigation/native'
 
 type RepositoryHeaderProps = {
@@ -23,21 +23,29 @@ const RepositoryHeader: React.FC<RepositoryHeaderProps> = (props: RepositoryHead
   const { repo } = props
   const { navigate } = useNavigation()
 
-  const isPrivate = (is_private: boolean) => {
-    if (!is_private) return 'This repository is public'
-    return 'This repository is private'
+  const PublicIcon = (props: IconProps) => <Icon {...props} name="unlock-outline" />
+  const PrivateIcon = (props: IconProps) => <Icon {...props} name="lock-outline" />
+  const ForkIcon = (props: IconProps) => <Icon {...props} name="shield-off-outline" />
+  const UnForkIcon = (props: IconProps) => <Icon {...props} name="shield-outline" />
+
+
+    const isPrivate = (is_private: boolean) => {
+      if (!is_private) return (<Tab icon={PublicIcon}></Tab>)
+    return ( <Stat>icon={PrivateIcon}</Stat>)
   }
 
   const isFork = (is_fork: boolean) => {
-    if (!is_fork) return 'This is not a Fork'
-    return 'This is a Fork'
+    if (!is_fork) return (<Tab icon={UnForkIcon}></Tab>)
+    return (<Tab icon={ForkIcon}></Tab>)
   }
 
   return (
     <RepositoryCard>
       <RepoPart>
         <LeftRepoPart>
-          <RepoName>{repo.name}</RepoName>
+            <RepoName>{repo.name}
+            {isFork(repo.private)}
+            {isPrivate(repo.private)}</RepoName>
         </LeftRepoPart>
         <Stat>
           <FollowerCard>
@@ -46,18 +54,6 @@ const RepositoryHeader: React.FC<RepositoryHeaderProps> = (props: RepositoryHead
           </FollowerCard>
         </Stat>
       </RepoPart>
-      <StatisticsPart>
-        <Stat>
-          <StatDescription>Fork</StatDescription>
-          <StatValue>{isFork(repo.private)}</StatValue>
-        </Stat>
-      </StatisticsPart>
-      <StatisticsPart>
-        <Stat>
-          <StatDescription>Private / Public</StatDescription>
-          <StatValue>{isPrivate(repo.private)}</StatValue>
-        </Stat>
-      </StatisticsPart>
       <StatisticsPart>
         <Stat>
           <StatDescription>Size</StatDescription>
