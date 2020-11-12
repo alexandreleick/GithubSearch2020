@@ -40,10 +40,8 @@ const RepoRenderer: React.FC<RepoRendererProps> = (props: RepoRendererProps) => 
 
     return (
       <Layout level="2" style={{ flex: 1 }}>
-        <ScrollView>
-          <RepositoryHeader repo={repo} />
-          <RepositoryDetails repo={repo} />
-        </ScrollView>
+        <RepositoryHeader repo={repo} />
+        <RepositoryDetails repo={repo} />
       </Layout>
     )
   })()

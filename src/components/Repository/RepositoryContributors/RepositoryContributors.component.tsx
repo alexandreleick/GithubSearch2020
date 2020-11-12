@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { Repository } from '../../../types/repositories/repository.type'
-import { FollowerFollowing } from '../../../types/user/follower-following.type'
 import useFindRepositoryContributors from '../../../hooks/user/useFindRepositoryContributors'
 import { Spinner } from '@ui-kitten/components'
 import { FlatList, useWindowDimensions, Text } from 'react-native'
 import { ContributorAvatar, ContributorCard, RepositoryContributorsTab } from './RepositoryContributors.styled'
 import { useNavigation } from '@react-navigation/native'
+import { Contributor } from '../../../types/user/contributor.type'
 
 type DataSourceProps = {
   id: number
-  contributor: FollowerFollowing
+  contributor: Contributor
 }
 
 type RepositoryContributorsProps = {
@@ -26,10 +26,10 @@ const RepositoryContributors: React.FC<RepositoryContributorsProps> = (props: Re
   useEffect(() => {
     if (!data) return
     setDataSource(
-      data.map((user: FollowerFollowing, index: number) => {
+      data.map((contributor: Contributor, index: number) => {
         return {
+          contributor,
           id: index,
-          contributor: user,
         } as DataSourceProps
       }),
     )
