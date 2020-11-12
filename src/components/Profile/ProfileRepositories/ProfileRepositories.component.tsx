@@ -18,6 +18,7 @@ import Badge from '../../Badge/Badge.component'
 import { GithubLanguagesColor } from '../../../types/github-languages-color.type'
 import { User } from '../../../types/user/user.type'
 import { FlatList, useWindowDimensions } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 
 type DataSourceProps = {
   id: number
@@ -33,6 +34,7 @@ const ProfileRepositories: React.FC<ProfileRepositoriesProps> = (props: ProfileR
   const { data, loading, error } = useFindProfileRepositories(user)
   const [dataSource, setDataSource] = useState<DataSourceProps[]>([])
   const { height } = useWindowDimensions()
+  const { navigate } = useNavigation()
 
   useEffect(() => {
     if (!data) return
@@ -67,7 +69,10 @@ const ProfileRepositories: React.FC<ProfileRepositoriesProps> = (props: ProfileR
           style={{ height: height / 2 - 70, marginBottom: 80 }}
           data={dataSource}
           renderItem={({ item }) => (
-            <RepositoryCard key={item.repo.node_id}>
+            <RepositoryCard
+              key={item.repo.node_id}
+              onPress={() => navigate('RepoResult', { repoUrl: item.repo.url, title: item.repo.name })}
+            >
               <RepositoryHead>
                 <RepositoryNameContainer>
                   {item.repo.private && <Icon name="lock-outline" />}
