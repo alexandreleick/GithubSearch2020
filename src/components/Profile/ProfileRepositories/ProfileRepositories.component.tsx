@@ -17,9 +17,7 @@ import * as languageColor from '../../../utils/language-colors.json'
 import Badge from '../../Badge/Badge.component'
 import { GithubLanguagesColor } from '../../../types/github-languages-color.type'
 import { User } from '../../../types/user/user.type'
-import { FlatList, useWindowDimensions, View } from 'react-native'
-import { FollowerAvatar, FollowerCard } from '../ProfileFollowers/ProfileFollowers.styled'
-import { FollowerFollowing } from '../../../types/user/follower-following.type'
+import { FlatList, useWindowDimensions } from 'react-native'
 
 type DataSourceProps = {
   id: number

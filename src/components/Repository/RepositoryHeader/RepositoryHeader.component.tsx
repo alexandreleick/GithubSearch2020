@@ -2,15 +2,15 @@ import { Repository } from '../../../types/repositories/repository.type'
 import React from 'react'
 import { Text } from 'react-native'
 import {
-  RepositoryCard,
+  FollowerCard,
+  LeftRepoPart,
   RepoName,
   RepoPart,
-  LeftRepoPart,
-  StatDescription,
-  StatValue,
+  RepositoryCard,
   Stat,
+  StatDescription,
   StatisticsPart,
-  FollowerCard,
+  StatValue,
 } from './RepositoryHeader.styled'
 import { Avatar } from '@ui-kitten/components'
 import { useNavigation } from '@react-navigation/native'

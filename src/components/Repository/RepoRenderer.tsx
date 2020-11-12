@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Layout, Spinner } from '@ui-kitten/components'
-import ProfileHeader from '../Profile/ProfileHeader/ProfileHeader.component'
-import ProfileDetails from '../Profile/ProfileDetails/ProfileDetails.component'
 import { Repository } from '../../types/repositories/repository.type'
 import useGetRepo from '../../hooks/repositories/useGetRepo.hook'
 import RepositoryDetails from './RepositoryDetails/RepositoryDetails.component'
 import RepositoryHeader from './RepositoryHeader/RepositoryHeader.component'
-import { ScrollView } from 'react-native'
 
 type RepoRendererProps = {
   repo?: Repository

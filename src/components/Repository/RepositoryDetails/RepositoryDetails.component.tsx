@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Repository } from '../../../types/repositories/repository.type'
-import { Text, useWindowDimensions } from 'react-native'
+import { useWindowDimensions } from 'react-native'
 import { RepositoryDetailsView } from './RepositoryDetails.styled'
 import { Icon, IconProps, Tab, TabView } from '@ui-kitten/components'
 import RepositoryContributors from '../RepositoryContributors/RepositoryContributors.component'

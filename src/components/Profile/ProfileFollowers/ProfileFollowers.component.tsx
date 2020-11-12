@@ -5,7 +5,6 @@ import { FlatList, useWindowDimensions } from 'react-native'
 import { FollowerFollowing } from '../../../types/user/follower-following.type'
 import { FollowerAvatar, FollowerCard, ProfileFollowersTab } from './ProfileFollowers.styled'
 import { User } from '../../../types/user/user.type'
-import { components } from '@eva-design/eva/mapping'
 import { useNavigation } from '@react-navigation/native'
 
 type DataSourceProps = {
