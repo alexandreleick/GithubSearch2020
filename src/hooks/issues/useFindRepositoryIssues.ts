@@ -11,11 +11,6 @@ const useFindRepositoryIssues: UseFindRepositoryIssuesType = (repo: Repository) 
     headers: { Authorization: false },
   })
 
-  useEffect(() => {
-    console.log(repo.issues_url.replace('{/number}', ''))
-    console.log(error)
-  }, [data, error])
-
   return {
     data,
     loading,
