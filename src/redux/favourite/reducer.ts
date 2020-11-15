@@ -17,14 +17,22 @@ export const favouriteReducer: Slice = createSlice({
   initialState,
   reducers: {
     favUser: (state: FavouriteState, { payload: user }: PayloadAction<User>) => {
+      const users: User[] = state.users || []
+      users.push(user)
+
       return {
         ...state,
-        users: [...state.users, user],
+        users,
       }
     },
-    favRepository: (state: FavouriteState, { payload: repository }: PayloadAction<Repository>) => ({
-      ...state,
-      repositories: [...state.repositories, repository],
-    }),
+    favRepository: (state: FavouriteState, { payload: repository }: PayloadAction<Repository>) => {
+      const repositories: Repository[] = state.repositories || []
+      repositories.push(repository)
+
+      return {
+        ...state,
+        repositories,
+      }
+    },
   },
 })
