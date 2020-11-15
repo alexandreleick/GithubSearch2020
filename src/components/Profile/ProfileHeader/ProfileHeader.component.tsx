@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {
   LeftUserPart,
   Login,
@@ -11,7 +11,11 @@ import {
   UserPart,
 } from './ProfileHeader.styled'
 import { User } from '../../../types/user/user.type'
-import { Avatar } from '@ui-kitten/components'
+import { Avatar, Button, Icon, IconProps } from '@ui-kitten/components'
+import { useDispatch, useSelector } from 'react-redux'
+import { favouriteReducer } from '../../../redux/favourite/reducer'
+import { ToastContext } from '../../../providers/ToastProvider/ToastProvider.component'
+import { selectUser } from '../../../redux/user/selectors'
 
 type ProfileHeaderProps = {
   user: User
@@ -19,6 +23,11 @@ type ProfileHeaderProps = {
 
 const ProfileHeader: React.FC<ProfileHeaderProps> = (props: ProfileHeaderProps) => {
   const { user } = props
+  const dispatch = useDispatch()
+  const { show } = useContext(ToastContext)
+  const loggedUser: User = useSelector(selectUser)
+
+  const StarIcon = (props: IconProps) => <Icon {...props} name="star" />
 
   return (
     <ProfileCard>
@@ -43,10 +52,25 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = (props: ProfileHeaderProps) 
           <StatValue>{user.public_repos}</StatValue>
         </Stat>
       </StatisticsPart>
-      <Stat style={{ marginTop: 10 }}>
+      <Stat style={{ marginTop: 10, marginBottom: 10 }}>
         <StatName>Bio</StatName>
         <StatValue>{user.bio}</StatValue>
       </Stat>
+      {loggedUser && loggedUser.login != user.login ? (
+        <Button
+          status="danger"
+          accessoryLeft={StarIcon}
+          size="small"
+          onPress={() => {
+            dispatch(favouriteReducer.actions.favUser(user))
+            if (show) show({ message: user.login + ' saccesfully added as favorite.', type: 'success' })
+          }}
+        >
+          Save as favorite
+        </Button>
+      ) : (
+        <></>
+      )}
     </ProfileCard>
   )
 }

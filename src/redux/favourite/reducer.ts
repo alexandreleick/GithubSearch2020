@@ -16,10 +16,12 @@ export const favouriteReducer: Slice = createSlice({
   name: 'favourite',
   initialState,
   reducers: {
-    favUser: (state: FavouriteState, { payload: user }: PayloadAction<User>) => ({
-      ...state,
-      users: [...state.users, user],
-    }),
+    favUser: (state: FavouriteState, { payload: user }: PayloadAction<User>) => {
+      return {
+        ...state,
+        users: [...state.users, user],
+      }
+    },
     favRepository: (state: FavouriteState, { payload: repository }: PayloadAction<Repository>) => ({
       ...state,
       repositories: [...state.repositories, repository],
