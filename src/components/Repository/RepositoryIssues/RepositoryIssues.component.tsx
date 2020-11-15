@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { Repository } from '../../../types/repositories/repository.type'
-import { RepositoryIssuesTab } from './RepositoryIssues.styled'
+import { IssueCard, RepositoryIssuesTab } from './RepositoryIssues.styled'
 import { Spinner } from '@ui-kitten/components'
 import { FlatList, useWindowDimensions, Text } from 'react-native'
-import { ContributorAvatar, ContributorCard } from '../RepositoryContributors/RepositoryContributors.styled'
-import useFindRepositoryContributors from '../../../hooks/user/useFindRepositoryContributors'
+import useFindRepositoryIssues from '../../../hooks/issues/useFindRepositoryIssues'
 import { useNavigation } from '@react-navigation/native'
-import { Contributor } from '../../../types/user/contributor.type'
+import { Issue } from '../../../types/issues/issue.type'
 
 type DataSourceProps = {
   id: number
+  issue: Issue
 }
 
 type RepositoryIssuesProps = {
@@ -18,7 +18,7 @@ type RepositoryIssuesProps = {
 
 const RepositoryIssues: React.FC<RepositoryIssuesProps> = (props: RepositoryIssuesProps) => {
   const { repo } = props
-  const { data, loading, error } = useFindRepositoryContributors(repo)
+  const { data, loading, error } = useFindRepositoryIssues(repo)
   const { height } = useWindowDimensions()
   const [dataSource, setDataSource] = useState<DataSourceProps[]>([])
   const { navigate } = useNavigation()
@@ -26,9 +26,9 @@ const RepositoryIssues: React.FC<RepositoryIssuesProps> = (props: RepositoryIssu
   useEffect(() => {
     if (!data) return
     setDataSource(
-      data.map((contributor: Contributor, index: number) => {
+      data.map((issue: Issue, index: number) => {
         return {
-          contributor,
+          issue,
           id: index,
         } as DataSourceProps
       }),
@@ -44,12 +44,13 @@ const RepositoryIssues: React.FC<RepositoryIssuesProps> = (props: RepositoryIssu
           style={{ height: height / 2 - 70, marginBottom: 80 }}
           data={dataSource}
           renderItem={({ item }) => (
-            <Text>{}</Text>
-            /*<ContributorCard
-              onPress={() =>
+            <IssueCard
+            /*onPress={() =>
                 navigate('UserResultProfile', { profileUrl: item.contributor.url, title: '@' + item.contributor.login })
-              }
-            ></ContributorCard>*/
+              }*/
+            >
+              {item.issue.title}
+            </IssueCard>
           )}
           numColumns={4}
           keyExtractor={(item) => item.id.toString()}
