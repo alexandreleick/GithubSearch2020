@@ -1,24 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import useFindProfileRepositories from '../../../hooks/user/useFindProfileRepositories.hook'
 import { Repository } from '../../../types/repositories/repository.type'
-import { Icon, Spinner } from '@ui-kitten/components'
-import { textEmoji } from 'markdown-to-text-emoji'
-import {
-  LanguageContainer,
-  LanguageName,
-  ProfileRepositoriesTab,
-  RepositoryCard,
-  RepositoryDescription,
-  RepositoryHead,
-  RepositoryName,
-  RepositoryNameContainer,
-} from './ProfileRepositories.styled'
-import * as languageColor from '../../../utils/language-colors.json'
-import Badge from '../../Badge/Badge.component'
-import { GithubLanguagesColor } from '../../../types/github-languages-color.type'
+import { Spinner } from '@ui-kitten/components'
+import { ProfileRepositoriesTab } from './ProfileRepositories.styled'
 import { User } from '../../../types/user/user.type'
 import { FlatList, useWindowDimensions } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
+import RepositoryCard from '../shared/RepositoryCard/RepositoryCard.component'
 
 type DataSourceProps = {
   id: number
@@ -34,7 +21,6 @@ const ProfileRepositories: React.FC<ProfileRepositoriesProps> = (props: ProfileR
   const { data, loading, error } = useFindProfileRepositories(user)
   const [dataSource, setDataSource] = useState<DataSourceProps[]>([])
   const { height } = useWindowDimensions()
-  const { navigate } = useNavigation()
 
   useEffect(() => {
     if (!data) return
@@ -48,18 +34,6 @@ const ProfileRepositories: React.FC<ProfileRepositoriesProps> = (props: ProfileR
     )
   }, [data])
 
-  // Get color of the github language
-  const getLanguageColor = (language: string) => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    const languageTs: GithubLanguagesColor = languageColor
-    if (languageTs[language]) {
-      return languageTs[language]['color'] || 'grey'
-    }
-
-    return 'grey'
-  }
-
   return (
     <ProfileRepositoriesTab>
       {loading ? (
@@ -68,24 +42,7 @@ const ProfileRepositories: React.FC<ProfileRepositoriesProps> = (props: ProfileR
         <FlatList
           style={{ height: height / 2 - 70, marginBottom: 80 }}
           data={dataSource}
-          renderItem={({ item }) => (
-            <RepositoryCard
-              key={item.repo.node_id}
-              onPress={() => navigate('RepoResult', { repoUrl: item.repo.url, title: item.repo.name })}
-            >
-              <RepositoryHead>
-                <RepositoryNameContainer>
-                  {item.repo.private && <Icon name="lock-outline" />}
-                  <RepositoryName>{item.repo.name}</RepositoryName>
-                </RepositoryNameContainer>
-                <RepositoryDescription>{textEmoji(item.repo.description || '')}</RepositoryDescription>
-              </RepositoryHead>
-              <LanguageContainer>
-                <Badge color={getLanguageColor(item.repo.language)} />
-                <LanguageName>{item.repo.language}</LanguageName>
-              </LanguageContainer>
-            </RepositoryCard>
-          )}
+          renderItem={({ item }) => <RepositoryCard repo={item.repo} />}
           numColumns={1}
           keyExtractor={(item) => item.id.toString()}
         />

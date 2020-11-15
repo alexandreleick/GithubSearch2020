@@ -1,5 +1,5 @@
 import { Repository } from '../../../types/repositories/repository.type'
-import React from 'react'
+import React, { useContext } from 'react'
 import { Text } from 'react-native'
 import {
   FollowerCard,
@@ -12,9 +12,12 @@ import {
   StatisticsPart,
   StatValue,
 } from './RepositoryHeader.styled'
-import { Avatar, IconProps, Icon, Tab } from '@ui-kitten/components'
+import { Avatar, Button, Icon, IconProps, Tab } from '@ui-kitten/components'
 import { useNavigation } from '@react-navigation/native'
 import { textEmoji } from 'markdown-to-text-emoji'
+import { favouriteReducer } from '../../../redux/favourite/reducer'
+import { useDispatch } from 'react-redux'
+import { ToastContext } from '../../../providers/ToastProvider/ToastProvider.component'
 
 type RepositoryHeaderProps = {
   repo: Repository
@@ -23,6 +26,8 @@ type RepositoryHeaderProps = {
 const RepositoryHeader: React.FC<RepositoryHeaderProps> = (props: RepositoryHeaderProps) => {
   const { repo } = props
   const { navigate } = useNavigation()
+  const dispatch = useDispatch()
+  const { show } = useContext(ToastContext)
 
   const PublicIcon = (props: IconProps) => <Icon {...props} name="unlock-outline" />
   const PrivateIcon = (props: IconProps) => <Icon {...props} name="lock-outline" />
@@ -38,6 +43,8 @@ const RepositoryHeader: React.FC<RepositoryHeaderProps> = (props: RepositoryHead
     if (!is_fork) return <Tab icon={UnForkIcon}></Tab>
     return <Tab icon={ForkIcon}></Tab>
   }
+
+  const StarIcon = (props: IconProps) => <Icon {...props} name="star" />
 
   return (
     <RepositoryCard>
@@ -72,12 +79,23 @@ const RepositoryHeader: React.FC<RepositoryHeaderProps> = (props: RepositoryHead
         <StatDescription>Description</StatDescription>
         <StatValue>{textEmoji(repo.description || '')}</StatValue>
       </Stat>
-      <StatisticsPart>
+      <StatisticsPart style={{ marginBottom: 10 }}>
         <Stat>
           <StatDescription>Languages</StatDescription>
           <StatValue>{repo.language}</StatValue>
         </Stat>
       </StatisticsPart>
+      <Button
+        status="danger"
+        accessoryLeft={StarIcon}
+        size="small"
+        onPress={() => {
+          dispatch(favouriteReducer.actions.favRepository(repo))
+          if (show) show({ message: repo.name + " repo's successfully added as favorite.", type: 'success' })
+        }}
+      >
+        Save as favorite
+      </Button>
     </RepositoryCard>
   )
 }

@@ -56,14 +56,14 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = (props: ProfileHeaderProps) 
         <StatName>Bio</StatName>
         <StatValue>{user.bio}</StatValue>
       </Stat>
-      {loggedUser && loggedUser.login != user.login ? (
+      {loggedUser?.login != user.login ? (
         <Button
           status="danger"
           accessoryLeft={StarIcon}
           size="small"
           onPress={() => {
             dispatch(favouriteReducer.actions.favUser(user))
-            if (show) show({ message: user.login + ' saccesfully added as favorite.', type: 'success' })
+            if (show) show({ message: user.login + " user's successfully added as favorite.", type: 'success' })
           }}
         >
           Save as favorite

@@ -1,31 +1,12 @@
 import React from 'react'
-import { View } from 'react-native'
-import { Avatar, Button, Layout, ListItem, Text } from '@ui-kitten/components'
-import { Container } from './FavouriteScreen.styled'
+import { Avatar, Card, Layout, Text } from '@ui-kitten/components'
+import { Container, UserCardView } from './FavouriteScreen.styled'
 import { User } from '../../../types/user/user.type'
 import { useSelector } from 'react-redux'
 import { selectRepositoriesFavorites, selectUsersFavorites } from '../../../redux/favourite/selectors'
 import { Repository } from '../../../types/repositories/repository.type'
 import LottieView from 'lottie-react-native'
-import WebViewBottomSheet from '../../../components/BottomSheet/CustomBottomSheet/WebViewBottomSheet'
-import { APP_CLIENT_ID } from '../../../utils/rest'
-
-const Favourites = () => <Button size="tiny">Delete</Button>
-
-const ItemImage = () => <Avatar source={require('../../../assets/icon/icon.png')} />
-
-const FavouriteScreen = () => {
-  return (
-    <>
-      <ListItem
-        title="Item"
-        description="A set of React Native components"
-        accessoryLeft={ItemImage}
-        accessoryRight={Favourites}
-      />
-    </>
-  )
-}
+import RepositoryCard from '../../../components/Profile/shared/RepositoryCard/RepositoryCard.component'
 
 const AddItem: React.FC = () => {
   const users: User[] = useSelector(selectUsersFavorites)
@@ -49,7 +30,16 @@ const AddItem: React.FC = () => {
     </Layout>
   ) : (
     <Container>
-      <Text>zii</Text>
+      {users &&
+        users.map((user: User) => (
+          <Card key={user.node_id} style={{ marginBottom: 10, marginHorizontal: 10, borderRadius: 10 }}>
+            <UserCardView>
+              <Avatar source={{ uri: user.avatar_url }} style={{ width: 40, height: 40 }} />
+              <Text style={{ marginTop: 10, marginLeft: 10 }}>{user.login}</Text>
+            </UserCardView>
+          </Card>
+        ))}
+      {repositories && repositories.map((repo: Repository) => <RepositoryCard key={repo.node_id} repo={repo} />)}
     </Container>
   )
 }
