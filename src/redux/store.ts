@@ -1,5 +1,4 @@
 import { combineReducers, configureStore, EnhancedStore, getDefaultMiddleware } from '@reduxjs/toolkit'
-import { baseReducer } from './base/reducer'
 import { persistReducer, persistStore } from 'redux-persist'
 import { Persistor } from 'redux-persist/es/types'
 import AsyncStorage from '@react-native-community/async-storage'
@@ -8,7 +7,6 @@ import { favouriteReducer } from './favourite/reducer'
 import { userReducer } from './user/reducer'
 
 const rootReducer: any = combineReducers({
-  base: baseReducer.reducer,
   favourite: favouriteReducer.reducer,
   user: userReducer.reducer,
 })
@@ -16,7 +14,7 @@ const rootReducer: any = combineReducers({
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['base', 'favourite', 'user'],
+  whitelist: ['favourite', 'user'],
   debug: false,
 }
 

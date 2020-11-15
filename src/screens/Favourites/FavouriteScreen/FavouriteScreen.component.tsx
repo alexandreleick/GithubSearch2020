@@ -1,6 +1,14 @@
 import React from 'react'
 import { View } from 'react-native'
-import { Avatar, Button, ListItem } from '@ui-kitten/components'
+import { Avatar, Button, Layout, ListItem, Text } from '@ui-kitten/components'
+import { Container } from './FavouriteScreen.styled'
+import { User } from '../../../types/user/user.type'
+import { useSelector } from 'react-redux'
+import { selectRepositoriesFavorites, selectUsersFavorites } from '../../../redux/favourite/selectors'
+import { Repository } from '../../../types/repositories/repository.type'
+import LottieView from 'lottie-react-native'
+import WebViewBottomSheet from '../../../components/BottomSheet/CustomBottomSheet/WebViewBottomSheet'
+import { APP_CLIENT_ID } from '../../../utils/rest'
 
 const Favourites = () => <Button size="tiny">Delete</Button>
 
@@ -20,14 +28,29 @@ const FavouriteScreen = () => {
 }
 
 const AddItem: React.FC = () => {
-  return (
-    <>
-      <View>
-        <Button title={'AddAnItem'} OnClick={{ FavouriteScreen }}>
-          Add an item
-        </Button>
-      </View>
-    </>
+  const users: User[] = useSelector(selectUsersFavorites)
+  const repositories: Repository[] = useSelector(selectRepositoriesFavorites)
+
+  return (!users || users.length <= 0) && (!repositories || repositories.length <= 0) ? (
+    <Layout level="2" style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 50 }}>
+      <LottieView
+        source={require('../../../assets/animations/empty.json')}
+        speed={0.5}
+        autoPlay
+        style={{
+          height: 150,
+          alignSelf: 'center',
+        }}
+      />
+      <Text category="h5">No favourites saved.</Text>
+      <Text style={{ marginBottom: 30, textAlign: 'center' }} category="p1">
+        Try to fav user or repository to add it here.
+      </Text>
+    </Layout>
+  ) : (
+    <Container>
+      <Text>zii</Text>
+    </Container>
   )
 }
 
