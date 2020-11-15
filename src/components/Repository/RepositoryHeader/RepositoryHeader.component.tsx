@@ -14,6 +14,7 @@ import {
 } from './RepositoryHeader.styled'
 import { Avatar, IconProps, Icon, Tab } from '@ui-kitten/components'
 import { useNavigation } from '@react-navigation/native'
+import { textEmoji } from 'markdown-to-text-emoji'
 
 type RepositoryHeaderProps = {
   repo: Repository
@@ -69,7 +70,7 @@ const RepositoryHeader: React.FC<RepositoryHeaderProps> = (props: RepositoryHead
       </StatisticsPart>
       <Stat style={{ marginTop: 10 }}>
         <StatDescription>Description</StatDescription>
-        <StatValue>{repo.description}</StatValue>
+        <StatValue>{textEmoji(repo.description || '')}</StatValue>
       </Stat>
       <StatisticsPart>
         <Stat>
