@@ -4,6 +4,7 @@ import { useWindowDimensions } from 'react-native'
 import { RepositoryDetailsView } from './RepositoryDetails.styled'
 import { Icon, IconProps, Tab, TabView } from '@ui-kitten/components'
 import RepositoryContributors from '../RepositoryContributors/RepositoryContributors.component'
+import RepositoryIssues from '../RepositoryIssues/RepositoryIssues.component'
 
 type RepositoryDetailsProps = {
   repo: Repository
@@ -21,6 +22,9 @@ const RepositoryDetails: React.FC<RepositoryDetailsProps> = (props: RepositoryDe
       <TabView selectedIndex={selectedIndex} onSelect={(index) => setSelectedIndex(index)}>
         <Tab title="Contributors" icon={FollowersIcon}>
           <RepositoryContributors repo={repo} />
+        </Tab>
+        <Tab title="Issues" icon={FollowersIcon}>
+          <RepositoryIssues repo={repo} />
         </Tab>
       </TabView>
     </RepositoryDetailsView>

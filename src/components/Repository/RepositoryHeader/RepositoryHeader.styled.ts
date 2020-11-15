@@ -55,6 +55,6 @@ export const FollowerCard = styled(Card)`
 `
 
 export const StatValue = styled.Text`
-    margin-left: 5px;
-    justify-content: flex-end;
+  margin-left: 5px;
+  justify-content: flex-end;
 `

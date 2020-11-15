@@ -28,24 +28,25 @@ const RepositoryHeader: React.FC<RepositoryHeaderProps> = (props: RepositoryHead
   const ForkIcon = (props: IconProps) => <Icon {...props} name="shield-off-outline" />
   const UnForkIcon = (props: IconProps) => <Icon {...props} name="shield-outline" />
 
-
-    const isPrivate = (is_private: boolean) => {
-      if (!is_private) return (<Tab icon={PublicIcon}></Tab>)
-    return ( <Stat>icon={PrivateIcon}</Stat>)
+  const isPrivate = (is_private: boolean) => {
+    if (!is_private) return <Tab icon={PublicIcon}></Tab>
+    return <Stat>icon={PrivateIcon}</Stat>
   }
 
   const isFork = (is_fork: boolean) => {
-    if (!is_fork) return (<Tab icon={UnForkIcon}></Tab>)
-    return (<Tab icon={ForkIcon}></Tab>)
+    if (!is_fork) return <Tab icon={UnForkIcon}></Tab>
+    return <Tab icon={ForkIcon}></Tab>
   }
 
   return (
     <RepositoryCard>
       <RepoPart>
         <LeftRepoPart>
-            <RepoName>{repo.name}
+          <RepoName>
+            {repo.name}
             {isFork(repo.private)}
-            {isPrivate(repo.private)}</RepoName>
+            {isPrivate(repo.private)}
+          </RepoName>
         </LeftRepoPart>
         <Stat>
           <FollowerCard>
