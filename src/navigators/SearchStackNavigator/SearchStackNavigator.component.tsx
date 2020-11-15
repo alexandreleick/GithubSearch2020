@@ -4,6 +4,7 @@ import SearchScreen from '../../screens/Search/SearchScreen'
 import Header from '../../components/Header/Header.component'
 import UserResultProfileScreen from '../../screens/Search/UserResultProfileScreen/UserResultProfileScreen.component'
 import ResultScreen from '../../screens/Result'
+import IssueScreen from '../../screens/Issues/IssueScreen.component'
 
 const Stack = createStackNavigator()
 
@@ -26,6 +27,12 @@ const SearchStackNavigator: React.FC = () => {
         initialParams={{ user: null, title: null }}
         options={{ header: (props: StackHeaderProps) => <Header {...props} title="User Profile" /> }}
         component={UserResultProfileScreen}
+      />
+      <Stack.Screen
+        name={'RepoIssue'}
+        initialParams={{ issue: null, title: null }}
+        options={{ header: (props: StackHeaderProps) => <Header {...props} title="Issue" /> }}
+        component={IssueScreen}
       />
     </Stack.Navigator>
   )
