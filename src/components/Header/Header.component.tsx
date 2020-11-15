@@ -28,7 +28,7 @@ const Header: React.FC<HeaderCustomProps> = (props: HeaderCustomProps) => {
     <TopNavigationAction
       icon={LogoutIcon}
       onPress={() => {
-        show({ message: 'GoodBye ' + user.login + ', see you soon!', type: 'info' })
+        if (show) show({ message: 'GoodBye ' + user.login + ', see you soon!', type: 'info' })
         dispatch(userReducer.actions.logout({}))
       }}
     />

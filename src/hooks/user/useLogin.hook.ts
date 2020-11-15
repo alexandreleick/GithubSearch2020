@@ -25,14 +25,13 @@ const useLogin: Function = () => {
       .then((result) => {
         const user: User = result[0].data
         setLoggedIn(true)
-        show({ message: 'Happy to see you again, ' + user.login + '!', type: 'success' })
+        if (show) show({ message: 'Happy to see you again, ' + user.login + '!', type: 'success' })
         dispatch(userReducer.actions.setUser(user))
         dispatch(userReducer.actions.setToken(loginData.access_token))
       })
-      .catch((err) => {
+      .catch(() => {
         setLoggedIn(false)
-        console.error(err.message)
-        show({ message: 'An error ocurred during the Github connection. Please try again later', type: 'danger' })
+        if (show) show({ message: 'An error ocurred during the Github connection.', type: 'danger' })
       })
   }
 

@@ -49,7 +49,7 @@ const RepositoryIssues: React.FC<RepositoryIssuesProps> = (props: RepositoryIssu
                 navigate('UserResultProfile', { profileUrl: item.contributor.url, title: '@' + item.contributor.login })
               }*/
             >
-              {item.issue.title}
+              <Text>{item.issue.title}</Text>
             </IssueCard>
           )}
           numColumns={4}
