@@ -29,8 +29,9 @@ const useLogin: Function = () => {
         dispatch(userReducer.actions.setUser(user))
         dispatch(userReducer.actions.setToken(loginData.access_token))
       })
-      .catch(() => {
+      .catch((err) => {
         setLoggedIn(false)
+        console.error(err.message)
         show({ message: 'An error ocurred during the Github connection. Please try again later', type: 'danger' })
       })
   }
