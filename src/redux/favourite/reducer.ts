@@ -1,19 +1,28 @@
 import { createSlice, PayloadAction, Slice } from '@reduxjs/toolkit'
 import { User } from '../../types/user/user.type'
-import { UserState } from '../user/reducer'
+import { Repository } from '../../types/repositories/repository.type'
 
 type FavouriteState = {
-  accessToken: string | undefined
+  users: User[]
+  repositories: Repository[]
 }
 
 const initialState: FavouriteState = {
-  accessToken: undefined,
+  users: [],
+  repositories: [],
 }
 
 export const favouriteReducer: Slice = createSlice({
   name: 'favourite',
   initialState,
   reducers: {
-    saveAsFavorite: (state: FavouriteState, { payload: user }: PayloadAction<User>) => ({ ...state, user }),
+    favUser: (state: FavouriteState, { payload: user }: PayloadAction<User>) => ({
+      ...state,
+      users: [...state.users, user],
+    }),
+    favRepository: (state: FavouriteState, { payload: repository }: PayloadAction<Repository>) => ({
+      ...state,
+      repositories: [...state.repositories, repository],
+    }),
   },
 })
