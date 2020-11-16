@@ -7,10 +7,12 @@ import { selectRepositoriesFavorites, selectUsersFavorites } from '../../../redu
 import { Repository } from '../../../types/repositories/repository.type'
 import LottieView from 'lottie-react-native'
 import RepositoryCard from '../../../components/Profile/shared/RepositoryCard/RepositoryCard.component'
+import { useNavigation } from '@react-navigation/native'
 
 const AddItem: React.FC = () => {
   const users: User[] = useSelector(selectUsersFavorites)
   const repositories: Repository[] = useSelector(selectRepositoriesFavorites)
+  const { navigate } = useNavigation()
 
   return (!users || users.length <= 0) && (!repositories || repositories.length <= 0) ? (
     <Layout level="2" style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 50 }}>
@@ -32,7 +34,11 @@ const AddItem: React.FC = () => {
     <Container>
       {users &&
         users.map((user: User) => (
-          <Card key={user.node_id} style={{ marginBottom: 10, marginHorizontal: 10, borderRadius: 10 }}>
+          <Card
+            key={user.node_id}
+            style={{ marginBottom: 10, marginHorizontal: 10, borderRadius: 10 }}
+            onPress={() => navigate('SearchUserProfile', { profileUrl: user.url, title: '@' + user.login })}
+          >
             <UserCardView>
               <Avatar source={{ uri: user.avatar_url }} style={{ width: 40, height: 40 }} />
               <Text style={{ marginTop: 10, marginLeft: 10 }}>{user.login}</Text>
