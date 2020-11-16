@@ -6,6 +6,7 @@ import useUserSearch from '../../../hooks/search/useUserSearch.hook'
 import useRepoSearch from '../../../hooks/search/useRepoSearch.hook'
 import { SearchUser } from '../../../types/search/search-user.type'
 import { SearchRepository } from '../../../types/search/search-repository.type'
+import { textEmoji } from 'markdown-to-text-emoji'
 
 const SearchScreen: React.FC = () => {
   const [value, setValue] = useState<string>('')
@@ -47,7 +48,7 @@ const SearchScreen: React.FC = () => {
         <ListItem
           key={index}
           title={repo.name}
-          description={repo.description}
+          description={textEmoji(repo.description || '')}
           accessoryLeft={() => ItemImage(repo.owner.avatar_url)}
           accessoryRight={Favorites}
           onPress={() => navigate('SearchRepo', { repoUrl: repo.url, title: repo.name })}
