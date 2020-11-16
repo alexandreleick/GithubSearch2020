@@ -12,14 +12,8 @@ export const Title = styled.Text`
 `
 
 export const IssueCard = styled(Card)`
-<<<<<<< HEAD
-  margin-top: 5px;
-  margin-left: 11px;
-  margin-right: 11px;
-=======
   margin-left: 15px;
   margin-right: 15px;
->>>>>>> 33bcbf2fd38d91b3b1f760df0d72573302f24366
   border-radius: 10px;
   margin-bottom: 10px;
 `
@@ -36,21 +30,21 @@ export const StatValue = styled.Text`
 `
 
 export const LabelIssueView = styled.View`
-    margin-top: 5px;
-    borderWidth: 1px;
-    borderRadius: 10px;
-    backgroundColor: green;
-    width: 20%;
+  margin-top: 5px;
+  border-width: 1px;
+  border-radius: 10px;
+  background-color: green;
+  width: 20%;
 `
 
 export const LabelIssueClose = styled.View`
-    margin-top: 5px;
-    borderWidth: 1px;
-    borderRadius: 10px;
-    backgroundColor: red;
-    width: 20%;
+  margin-top: 5px;
+  border-width: 1px;
+  border-radius: 10px;
+  background-color: red;
+  width: 20%;
 `
 
 export const LabelIssue = styled.Text`
-  textAlign: center;
+  text-align: center;
 `
