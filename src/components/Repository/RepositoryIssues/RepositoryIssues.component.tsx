@@ -7,10 +7,10 @@ import {
   StatValue,
   Title,
   LabelIssue,
-  LabelIssueView,
   LabelIssueClose,
+  LabelIssueOpened,
 } from './RepositoryIssues.styled'
-import { Spinner } from '@ui-kitten/components'
+import { Spinner, Text } from '@ui-kitten/components'
 import { FlatList, useWindowDimensions } from 'react-native'
 import useFindRepositoryIssues from '../../../hooks/issues/useFindRepositoryIssues'
 import { useNavigation } from '@react-navigation/native'
@@ -62,9 +62,9 @@ const RepositoryIssues: React.FC<RepositoryIssuesProps> = (props: RepositoryIssu
               <StatisticsPart>
                 <StatValue>Last update at {item.issue.updated_at}</StatValue>
               </StatisticsPart>
-              <LabelIssueView>
-                <LabelIssue>{item.issue.state}</LabelIssue>
-              </LabelIssueView>
+              <StatisticsPart>
+                {item.issue.state == "closed" ? <LabelIssueClose><LabelIssue>Closed</LabelIssue></LabelIssueClose> : <LabelIssueOpened><LabelIssue>Open</LabelIssue></LabelIssueOpened>}
+              </StatisticsPart>
             </IssueCard>
           )}
           numColumns={1}

@@ -29,7 +29,7 @@ export const StatValue = styled.Text`
   justify-content: flex-end;
 `
 
-export const LabelIssueView = styled.View`
+export const LabelIssueOpened = styled.View`
   margin-top: 5px;
   border-width: 1px;
   border-radius: 10px;
