@@ -44,7 +44,9 @@ const RepositoryIssues: React.FC<RepositoryIssuesProps> = (props: RepositoryIssu
           style={{ height: height / 2 - 70, marginBottom: 80 }}
           data={dataSource}
           renderItem={({ item }) => (
-            <IssueCard onPress={() => navigate('RepoIssue', { issue: item.issue, title: '@' + item.issue.title })}>
+            <IssueCard
+              onPress={() => navigate('RepoIssue', { issue: item.issue, title: 'From @' + item.issue.user.login })}
+            >
               <StatisticsPart>
                 <Title>{item.issue.title}</Title>
               </StatisticsPart>
@@ -56,7 +58,7 @@ const RepositoryIssues: React.FC<RepositoryIssuesProps> = (props: RepositoryIssu
               </StatisticsPart>
             </IssueCard>
           )}
-          numColumns={4}
+          numColumns={1}
           keyExtractor={(item) => item.id.toString()}
         />
       )}
