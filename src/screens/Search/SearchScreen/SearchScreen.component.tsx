@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Avatar, Button, Input, ListItem, Tab, TabView } from '@ui-kitten/components'
+import { Avatar, Button, Icon, IconProps, Input, ListItem, Tab, TabView } from '@ui-kitten/components'
 import { ScrollView, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import useUserSearch from '../../../hooks/search/useUserSearch.hook'
@@ -7,12 +7,15 @@ import useRepoSearch from '../../../hooks/search/useRepoSearch.hook'
 import { SearchUser } from '../../../types/search/search-user.type'
 import { SearchRepository } from '../../../types/search/search-repository.type'
 import { textEmoji } from 'markdown-to-text-emoji'
+import { useDispatch } from 'react-redux'
+import { favouriteReducer } from '../../../redux/favourite/reducer'
+import { User } from '../../../types/user/user.type'
+import { Repository } from '../../../types/repositories/repository.type'
 
 const SearchScreen: React.FC = () => {
   const [value, setValue] = useState<string>('')
   const { navigate } = useNavigation()
   const [selectedIndex, setSelectedIndex] = useState<number>(0)
-
   const { data, loading, error, dispatchUserSearch } = useUserSearch()
   const { data: datas, dispatchRepoSearch } = useRepoSearch()
   const onChangeSearch = (query: string) => setValue(query)
@@ -23,7 +26,6 @@ const SearchScreen: React.FC = () => {
     //navigate('Result')
   }
 
-  const Favorites = () => <Button size="tiny">FOLLOW</Button>
   const ItemImage = (url: string) => {
     return <Avatar source={{ uri: url }} style={{ width: 40, height: 40 }} />
   }
@@ -35,7 +37,6 @@ const SearchScreen: React.FC = () => {
           key={index}
           title={user.login}
           accessoryLeft={() => ItemImage(user.avatar_url)}
-          accessoryRight={Favorites}
           onPress={() => navigate('SearchUserProfile', { profileUrl: user.url, title: '@' + user.login })}
         />
       ))
@@ -50,7 +51,6 @@ const SearchScreen: React.FC = () => {
           title={repo.name}
           description={textEmoji(repo.description || '')}
           accessoryLeft={() => ItemImage(repo.owner.avatar_url)}
-          accessoryRight={Favorites}
           onPress={() => navigate('SearchRepo', { repoUrl: repo.url, title: repo.name })}
         />
       ))
