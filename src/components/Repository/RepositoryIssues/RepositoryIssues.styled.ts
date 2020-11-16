@@ -14,6 +14,7 @@ export const Title = styled.Text`
 export const IssueCard = styled(Card)`
   margin-top: 5px;
   margin-left: 11px;
+  margin-right: 11px;
   border-radius: 10px;
 `
 
@@ -26,4 +27,24 @@ export const StatisticsPart = styled.View`
 export const StatValue = styled.Text`
   margin-left: 5px;
   justify-content: flex-end;
+`
+
+export const LabelIssueView = styled.View`
+    margin-top: 5px;
+    borderWidth: 1px;
+    borderRadius: 10px;
+    backgroundColor: green;
+    width: 20%;
+`
+
+export const LabelIssueClose = styled.View`
+    margin-top: 5px;
+    borderWidth: 1px;
+    borderRadius: 10px;
+    backgroundColor: red;
+    width: 20%;
+`
+
+export const LabelIssue = styled.Text`
+  textAlign: center;
 `

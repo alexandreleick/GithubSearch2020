@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Repository } from '../../../types/repositories/repository.type'
-import { IssueCard, RepositoryIssuesTab, StatisticsPart, StatValue, Title } from './RepositoryIssues.styled'
+import { IssueCard, RepositoryIssuesTab, StatisticsPart, StatValue, Title, LabelIssue, LabelIssueView, LabelIssueClose } from './RepositoryIssues.styled'
 import { Spinner } from '@ui-kitten/components'
 import { FlatList, useWindowDimensions } from 'react-native'
 import useFindRepositoryIssues from '../../../hooks/issues/useFindRepositoryIssues'
@@ -51,12 +51,12 @@ const RepositoryIssues: React.FC<RepositoryIssuesProps> = (props: RepositoryIssu
               <StatisticsPart>
                 <StatValue>Last update at {item.issue.updated_at}</StatValue>
               </StatisticsPart>
-              <StatisticsPart>
-                <StatValue>{item.issue.state}</StatValue>
-              </StatisticsPart>
+              <LabelIssueView>
+                <LabelIssue>{item.issue.state}</LabelIssue>
+              </LabelIssueView>
             </IssueCard>
           )}
-          numColumns={4}
+          numColumns={1}
           keyExtractor={(item) => item.id.toString()}
         />
       )}
