@@ -56,12 +56,12 @@ const RepositoryHeader: React.FC<RepositoryHeaderProps> = (props: RepositoryHead
             {isPrivate(repo.private)}
           </RepoName>
         </LeftRepoPart>
-        <Stat>
+        {/*<Stat>
           <FollowerCard>
             <Avatar source={{ uri: repo.owner.avatar_url, cache: 'force-cache' }} />
             <Text>{repo.owner.login}</Text>
           </FollowerCard>
-        </Stat>
+        </Stat>*/}
       </RepoPart>
       <StatisticsPart>
         <Stat>

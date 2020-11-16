@@ -34,6 +34,8 @@ export const LabelIssueView = styled.View`
   border-width: 1px;
   border-radius: 10px;
   background-color: green;
+  border-color: green;
+  color: white;
   width: 20%;
 `
 
@@ -47,4 +49,5 @@ export const LabelIssueClose = styled.View`
 
 export const LabelIssue = styled.Text`
   text-align: center;
+  color: white;
 `
