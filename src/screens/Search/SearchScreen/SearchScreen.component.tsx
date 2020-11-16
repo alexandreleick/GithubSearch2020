@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Avatar, Button, Icon, IconProps, Input, ListItem, Tab, TabView } from '@ui-kitten/components'
+import { Avatar, Button, Input, ListItem, Tab, TabView } from '@ui-kitten/components'
 import { ScrollView, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import useUserSearch from '../../../hooks/search/useUserSearch.hook'
@@ -7,10 +7,6 @@ import useRepoSearch from '../../../hooks/search/useRepoSearch.hook'
 import { SearchUser } from '../../../types/search/search-user.type'
 import { SearchRepository } from '../../../types/search/search-repository.type'
 import { textEmoji } from 'markdown-to-text-emoji'
-import { useDispatch } from 'react-redux'
-import { favouriteReducer } from '../../../redux/favourite/reducer'
-import { User } from '../../../types/user/user.type'
-import { Repository } from '../../../types/repositories/repository.type'
 
 const SearchScreen: React.FC = () => {
   const [value, setValue] = useState<string>('')

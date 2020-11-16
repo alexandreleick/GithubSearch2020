@@ -2,15 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { Repository } from '../../../types/repositories/repository.type'
 import {
   IssueCard,
+  LabelIssue,
+  LabelIssueClose,
+  LabelIssueOpened,
   RepositoryIssuesTab,
   StatisticsPart,
   StatValue,
   Title,
-  LabelIssue,
-  LabelIssueClose,
-  LabelIssueOpened,
 } from './RepositoryIssues.styled'
-import { Spinner, Text } from '@ui-kitten/components'
+import { Spinner } from '@ui-kitten/components'
 import { FlatList, useWindowDimensions } from 'react-native'
 import useFindRepositoryIssues from '../../../hooks/issues/useFindRepositoryIssues'
 import { useNavigation } from '@react-navigation/native'
@@ -63,7 +63,15 @@ const RepositoryIssues: React.FC<RepositoryIssuesProps> = (props: RepositoryIssu
                 <StatValue>Last update at {item.issue.updated_at}</StatValue>
               </StatisticsPart>
               <StatisticsPart>
-                {item.issue.state == "closed" ? <LabelIssueClose><LabelIssue>Closed</LabelIssue></LabelIssueClose> : <LabelIssueOpened><LabelIssue>Open</LabelIssue></LabelIssueOpened>}
+                {item.issue.state == 'closed' ? (
+                  <LabelIssueClose>
+                    <LabelIssue>Closed</LabelIssue>
+                  </LabelIssueClose>
+                ) : (
+                  <LabelIssueOpened>
+                    <LabelIssue>Open</LabelIssue>
+                  </LabelIssueOpened>
+                )}
               </StatisticsPart>
             </IssueCard>
           )}

@@ -1,8 +1,6 @@
 import { Repository } from '../../../types/repositories/repository.type'
 import React, { useContext } from 'react'
-import { Text } from 'react-native'
 import {
-  FollowerCard,
   LeftRepoPart,
   RepoName,
   RepoPart,
@@ -12,7 +10,7 @@ import {
   StatisticsPart,
   StatValue,
 } from './RepositoryHeader.styled'
-import { Avatar, Button, Icon, IconProps, Tab } from '@ui-kitten/components'
+import { Button, Icon, IconProps, Tab } from '@ui-kitten/components'
 import { useNavigation } from '@react-navigation/native'
 import { textEmoji } from 'markdown-to-text-emoji'
 import { favouriteReducer } from '../../../redux/favourite/reducer'
