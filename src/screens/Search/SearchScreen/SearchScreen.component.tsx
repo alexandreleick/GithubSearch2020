@@ -35,7 +35,7 @@ const SearchScreen: React.FC = () => {
           title={user.login}
           accessoryLeft={() => ItemImage(user.avatar_url)}
           accessoryRight={Favorites}
-          onPress={() => navigate('UserResultProfile', { profileUrl: user.url, title: '@' + user.login })}
+          onPress={() => navigate('SearchUserProfile', { profileUrl: user.url, title: '@' + user.login })}
         />
       ))
     return null
@@ -50,7 +50,7 @@ const SearchScreen: React.FC = () => {
           description={repo.description}
           accessoryLeft={() => ItemImage(repo.owner.avatar_url)}
           accessoryRight={Favorites}
-          onPress={() => navigate('RepoResult', { repoUrl: repo.url, title: repo.name })}
+          onPress={() => navigate('SearchRepo', { repoUrl: repo.url, title: repo.name })}
         />
       ))
     return null

@@ -6,7 +6,7 @@ type UseFindRepositoryIssuesType = (repo: Repository) => { data: Issue[]; loadin
 
 const useFindRepositoryIssues: UseFindRepositoryIssuesType = (repo: Repository) => {
   const [{ data, loading, error }] = useAxios<Issue[]>({
-    url: repo.issues_url.replace('{/number}', ''),
+    url: repo.issues_url.replace('{/number}', '') + '?state=all',
     headers: { Authorization: false },
   })
 

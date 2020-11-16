@@ -6,13 +6,12 @@ import RepositoryDetails from './RepositoryDetails/RepositoryDetails.component'
 import RepositoryHeader from './RepositoryHeader/RepositoryHeader.component'
 
 type RepoRendererProps = {
-  repo?: Repository
   fetchRepoUrl?: string
 }
 
 const RepoRenderer: React.FC<RepoRendererProps> = (props: RepoRendererProps) => {
-  const { repo: propsRepo, fetchRepoUrl } = props
-  const [repo, setRepo] = useState<Repository | undefined>(propsRepo)
+  const { fetchRepoUrl } = props
+  const [repo, setRepo] = useState<Repository>()
   const [loading, setLoading] = useState<boolean>(!!fetchRepoUrl)
   const { dispatchGetRepo } = useGetRepo()
 
