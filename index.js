@@ -8,4 +8,6 @@ import { axios } from './src/utils/rest'
 const cache = new LRU({ max: 10 })
 configure({ axios, cache })
 
+console.disableYellowBox = true
+
 AppRegistry.registerComponent(name, () => App)
