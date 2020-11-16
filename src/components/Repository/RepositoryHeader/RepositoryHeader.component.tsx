@@ -35,13 +35,13 @@ const RepositoryHeader: React.FC<RepositoryHeaderProps> = (props: RepositoryHead
   const UnForkIcon = (props: IconProps) => <Icon {...props} name="shield-outline" />
 
   const isPrivate = (is_private: boolean) => {
-    if (!is_private) return <Tab icon={PublicIcon}></Tab>
-    return <Stat>icon={PrivateIcon}</Stat>
+    if (!is_private) return <Tab icon={PublicIcon} />
+    return <Tap icon={PrivateIcon} />
   }
 
   const isFork = (is_fork: boolean) => {
-    if (!is_fork) return <Tab icon={UnForkIcon}></Tab>
-    return <Tab icon={ForkIcon}></Tab>
+    if (!is_fork) return <Tab icon={UnForkIcon} />
+    return <Tab icon={ForkIcon} />
   }
 
   const StarIcon = (props: IconProps) => <Icon {...props} name="star" />

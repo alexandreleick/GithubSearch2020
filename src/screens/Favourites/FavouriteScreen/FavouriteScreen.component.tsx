@@ -39,7 +39,10 @@ const AddItem: React.FC = () => {
             </UserCardView>
           </Card>
         ))}
-      {repositories && repositories.map((repo: Repository) => <RepositoryCard key={repo.node_id} repo={repo} />)}
+      {repositories &&
+        repositories.map((repo: Repository) => (
+          <RepositoryCard key={repo.node_id} repo={repo} routeName={'SearchRepo'} />
+        ))}
     </Container>
   )
 }

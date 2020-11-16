@@ -20,7 +20,7 @@ export const favouriteReducer: Slice = createSlice({
       const users: User[] = state.users || []
       users.push(user)
 
-      return {
+      return void {
         ...state,
         users,
       }
@@ -29,7 +29,7 @@ export const favouriteReducer: Slice = createSlice({
       const repositories: Repository[] = state.repositories || []
       repositories.push(repository)
 
-      return {
+      return void {
         ...state,
         repositories,
       }
