@@ -9,7 +9,6 @@ const BottomNav: React.FC<BottomTabBarProps> = ({ state, navigation }: BottomTab
   const FavouriteIcon = (props: IconProps) => <Icon {...props} name="star-outline" />
   const SearchIcon = (props: IconProps) => <Icon {...props} name="search-outline" />
   const ProfileIcon = (props: IconProps) => <Icon {...props} name="person-outline" />
-  const SettingsIcon = (props: IconProps) => <Icon {...props} name="settings-outline" />
 
   return (
     <BottomNavigation
@@ -20,7 +19,6 @@ const BottomNav: React.FC<BottomTabBarProps> = ({ state, navigation }: BottomTab
       <BottomNavigationTab title="Favourites" icon={FavouriteIcon} />
       <BottomNavigationTab title="Search" icon={SearchIcon} />
       <BottomNavigationTab title="Profile" icon={ProfileIcon} />
-      <BottomNavigationTab title="Settings" icon={SettingsIcon} />
     </BottomNavigation>
   )
 }

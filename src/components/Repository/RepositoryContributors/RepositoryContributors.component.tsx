@@ -46,7 +46,7 @@ const RepositoryContributors: React.FC<RepositoryContributorsProps> = (props: Re
           renderItem={({ item }) => (
             <ContributorCard
               onPress={() =>
-                navigate('UserResultProfile', { profileUrl: item.contributor.url, title: '@' + item.contributor.login })
+                navigate('SearchUserProfile', { profileUrl: item.contributor.url, title: '@' + item.contributor.login })
               }
             >
               <ContributorAvatar source={{ uri: item.contributor.avatar_url, cache: 'force-cache' }} />

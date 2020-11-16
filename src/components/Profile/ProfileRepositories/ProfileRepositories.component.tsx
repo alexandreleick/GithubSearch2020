@@ -6,6 +6,8 @@ import { ProfileRepositoriesTab } from './ProfileRepositories.styled'
 import { User } from '../../../types/user/user.type'
 import { FlatList, useWindowDimensions } from 'react-native'
 import RepositoryCard from '../shared/RepositoryCard/RepositoryCard.component'
+import { useSelector } from 'react-redux'
+import { selectUser } from '../../../redux/user/selectors'
 
 type DataSourceProps = {
   id: number
@@ -21,6 +23,7 @@ const ProfileRepositories: React.FC<ProfileRepositoriesProps> = (props: ProfileR
   const { data, loading, error } = useFindProfileRepositories(user)
   const [dataSource, setDataSource] = useState<DataSourceProps[]>([])
   const { height } = useWindowDimensions()
+  const loggedUser: User = useSelector(selectUser)
 
   useEffect(() => {
     if (!data) return
@@ -42,7 +45,12 @@ const ProfileRepositories: React.FC<ProfileRepositoriesProps> = (props: ProfileR
         <FlatList
           style={{ height: height / 2 - 70, marginBottom: 80 }}
           data={dataSource}
-          renderItem={({ item }) => <RepositoryCard repo={item.repo} />}
+          renderItem={({ item }) => (
+            <RepositoryCard
+              repo={item.repo}
+              routeName={loggedUser?.login != user.login ? 'SearchRepo' : 'ProfileRepo'}
+            />
+          )}
           numColumns={1}
           keyExtractor={(item) => item.id.toString()}
         />

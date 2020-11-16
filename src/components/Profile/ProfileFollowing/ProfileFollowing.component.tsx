@@ -6,6 +6,8 @@ import { FollowingAvatar, FollowingCard, ProfileFollowingTab } from './ProfileFo
 import useFindProfileFollowing from '../../../hooks/user/useFindProfileFollowing.hook'
 import { User } from '../../../types/user/user.type'
 import { useNavigation } from '@react-navigation/native'
+import { useSelector } from 'react-redux'
+import { selectUser } from '../../../redux/user/selectors'
 
 type DataSourceProps = {
   id: number
@@ -22,6 +24,7 @@ const ProfileFollowing: React.FC<ProfileFollowingProps> = (props: ProfileFollowi
   const [dataSource, setDataSource] = useState<DataSourceProps[]>([])
   const { height } = useWindowDimensions()
   const { navigate } = useNavigation()
+  const loggedUser: User = useSelector(selectUser)
 
   useEffect(() => {
     if (!data) return
@@ -46,7 +49,10 @@ const ProfileFollowing: React.FC<ProfileFollowingProps> = (props: ProfileFollowi
           renderItem={({ item }) => (
             <FollowingCard
               onPress={() =>
-                navigate('UserResultProfile', { profileUrl: item.follower.url, title: '@' + item.follower.login })
+                navigate(loggedUser?.login != user.login ? 'SearchUserProfile' : 'ProfileUserProfile', {
+                  profileUrl: item.follower.url,
+                  title: '@' + item.follower.login,
+                })
               }
             >
               <FollowingAvatar source={{ uri: item.follower.avatar_url, cache: 'force-cache' }} />

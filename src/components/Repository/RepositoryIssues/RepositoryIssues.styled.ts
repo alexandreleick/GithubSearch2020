@@ -12,10 +12,16 @@ export const Title = styled.Text`
 `
 
 export const IssueCard = styled(Card)`
+<<<<<<< HEAD
   margin-top: 5px;
   margin-left: 11px;
   margin-right: 11px;
+=======
+  margin-left: 15px;
+  margin-right: 15px;
+>>>>>>> 33bcbf2fd38d91b3b1f760df0d72573302f24366
   border-radius: 10px;
+  margin-bottom: 10px;
 `
 
 export const StatisticsPart = styled.View`

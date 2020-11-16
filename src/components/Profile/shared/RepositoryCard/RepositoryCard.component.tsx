@@ -18,10 +18,11 @@ import * as languageColor from '../../../../utils/language-colors.json'
 
 type RepositoryCardProps = {
   repo: Repository
+  routeName: string
 }
 
 const RepositoryCard: React.FC<RepositoryCardProps> = (props: RepositoryCardProps) => {
-  const { repo } = props
+  const { repo, routeName } = props
   const { navigate } = useNavigation()
 
   // Get color of the github language
@@ -37,10 +38,7 @@ const RepositoryCard: React.FC<RepositoryCardProps> = (props: RepositoryCardProp
   }
 
   return (
-    <RepositoryCardView
-      key={repo.node_id}
-      onPress={() => navigate('RepoResult', { repoUrl: repo.url, title: repo.name })}
-    >
+    <RepositoryCardView key={repo.node_id} onPress={() => navigate(routeName, { repoUrl: repo.url, title: repo.name })}>
       <RepositoryHead>
         <RepositoryNameContainer>
           {repo.private && <Icon name="lock-outline" />}
